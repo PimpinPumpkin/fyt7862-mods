@@ -31,6 +31,7 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 | App reskins | [06-app-reskins.md](docs/06-app-reskins.md) | EQ, FM radio, Bluetooth, Settings → dark + slider‑blue |
 | The skin system | [07-skin-system.md](docs/07-skin-system.md) | How SYU apps load skins + the no‑decrypt override trick |
 | Applying changes | [08-applying.md](docs/08-applying.md) | The `/fem` in‑place install pipeline |
+| Clock widget | [09-clock-widget.md](docs/09-clock-widget.md) | Custom color‑selectable digital clock (no Gradle build) |
 
 `artifacts/` holds the built APKs, splash images, configs and the root package.
 `scripts/` holds the reusable generators (gradients, icons, the install helper).
