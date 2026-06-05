@@ -1,0 +1,41 @@
+#test
+bt#LEHX-L6Pro-8#0000
+carmark#0  
+persist.sys.navi.carmarkset=0
+ro.build.version.release = 10
+ro.fyt.launcher=com.android.launcher6
+
+ro.lsec.cfgddrsize=8G
+
+ro.sf.swrotation=180
+qemu.hw.mainkeys=0
+sys.lsec.navi_bar_height=144
+ro.fyt.bright_level_day=90
+ro.fyt.screenbtn_show=0
+
+ro.build.fytisbootopen=1
+
+sys.fyt.bluetooth_type=1
+persist.btmic.gain=6
+
+ro.build.fytisbootopen=0
+
+# ������������
+# 0������������
+# 1��RDA��
+# 2��IVT��
+# 3��WQRDA��
+# 4: WQBC5
+
+sys.fyt.ec_version=6
+ro.fyt.splitscreen=0
+persist.fyt.zh_frontview_enable=false
+# 0����360 1��360
+persist.syu.camera360 = 0
+persist.launcher.packagename=com.google.android.apps.maps
+
+#����1080 dvr
+persist.sys.dvrPackagename=com.fvsm.camera
+
+#����720 dvr
+#persist.sys.dvrPackagename=com.ankai.cardvr
