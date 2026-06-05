@@ -9,7 +9,8 @@ public class ClockWidget extends AppWidgetProvider {
     SharedPreferences p = ctx.getSharedPreferences("clk", Context.MODE_PRIVATE);
     int color = p.getInt("c_" + id, 0xFFFFFFFF);
     RemoteViews v = new RemoteViews(ctx.getPackageName(), R.layout.clock_widget);
-    v.setTextColor(R.id.time, color);
+    v.setTextColor(R.id.hour, color);
+    v.setTextColor(R.id.minute, color);
     v.setTextColor(R.id.date, color);
     mgr.updateAppWidget(id, v);
   }

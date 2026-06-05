@@ -25,7 +25,7 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 |---|---|---|
 | Root (locked BL) | [01-rooting.md](docs/01-rooting.md) | Magisk via a boot‑only testkey‑signed OTA — no PC, fails safe |
 | Boot splash | [02-boot-splash.md](docs/02-boot-splash.md) | Custom uboot logo + bootanimation |
-| Status bar | [03-systemui.md](docs/03-systemui.md) | 7870 clone: centered clock, left wifi, outline icons |
+| Status bar | [03-systemui.md](docs/03-systemui.md) | 7870 clone: centered clock, left wifi, thick wifi, hidden volume, transparent bar |
 | Nav bar | [04-navbar.md](docs/04-navbar.md) | Flat `com.syu.air` bar, blue volume slider |
 | Launcher | [05-launcher.md](docs/05-launcher.md) | Lawnchair, single full‑width home (two‑panel fix) |
 | App reskins | [06-app-reskins.md](docs/06-app-reskins.md) | EQ, FM radio, Bluetooth, Settings → dark + slider‑blue |
