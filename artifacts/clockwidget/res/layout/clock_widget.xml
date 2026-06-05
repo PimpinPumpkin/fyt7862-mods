@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content" android:layout_height="wrap_content"
-  android:orientation="vertical" android:gravity="center" android:padding="6dp">
-  <TextClock android:id="@+id/time" android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:format12Hour="h:mm" android:format24Hour="H:mm" android:textSize="56sp"
+  android:orientation="vertical" android:gravity="center" android:padding="4dp">
+  <TextClock android:id="@+id/hour" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:format12Hour="h" android:format24Hour="HH" android:textSize="66sp"
+    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light" android:includeFontPadding="false"/>
+  <TextClock android:id="@+id/minute" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:format12Hour="mm" android:format24Hour="mm" android:textSize="66sp"
     android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light" android:includeFontPadding="false"/>
   <TextClock android:id="@+id/date" android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:format12Hour="EEE, MMM d" android:format24Hour="EEE, MMM d" android:textSize="16sp"
-    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif" android:letterSpacing="0.04"/>
+    android:format12Hour="EEE, MMM d" android:format24Hour="EEE, MMM d" android:textSize="14sp"
+    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif" android:layout_marginTop="6dp"
+    android:letterSpacing="0.03"/>
 </LinearLayout>

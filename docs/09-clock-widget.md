@@ -6,8 +6,10 @@ looks like it and adds a **color picker**.
 
 Source: `artifacts/clockwidget/` (package `com.fyt7862.clock`, label **FYT Clock**).
 
-- **Widget** = two `TextClock`s stacked (large `h:mm` time, small `EEE, MMM d` date), `sans-serif-light`,
-  white default. `TextClock` is `@RemoteView`‑safe and self‑updates, so no service/alarm is needed.
+- **Widget** = three **vertically stacked** elements — hour (`h`, 66sp) over minute (`mm`, 66sp) over date
+  (`EEE, MMM d`, 14sp), all `sans-serif-light`, white default — the 7870's stacked look (not `h:mm` on one
+  line). `TextClock` is `@RemoteView`‑safe and self‑updates, so no service/alarm is needed. A
+  `PreviewActivity` (launcher entry) inflates the widget into a dark frame for on‑device preview.
 - **Config activity** launches when you drop the widget; it shows swatches — **white (default, = the 7870),**
   slider‑blue `#71B5FF`, red, green, amber, purple — and applies the pick with
   `RemoteViews.setTextColor` (saved per‑widget in `SharedPreferences`).

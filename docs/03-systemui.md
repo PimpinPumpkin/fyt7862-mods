@@ -24,6 +24,28 @@ decode **with the device `framework-res.apk` installed** (`apktool if framework-
 - **Recents / volume icons**: ported 7870 vectors; recents sized via `icon_recent.xml` width/height
   (scaleType=center → intrinsic == rendered).
 
+## Transparent bar · hidden volume · thick wifi · bigger data arrows
+
+All resource‑only (no smali), in the `-s` decode of `status_bar_h.xml` + drawables:
+
+- **Transparent bar** (kill the black strip over apps). The bar bg is **not** AOSP's
+  `BarTransitions$BarBackgroundDrawable` color (`system_bar_background_opaque`) — FYT overrides it.
+  `PhoneStatusBarView.<init>` runs `setBackground(getDrawable(StatusBarConfig.statusBarBK()))`, and
+  `statusBarBK()` returns **`R.drawable.system_bar_background_yf`**, a values alias
+  (`res/values/drawables.xml`) → `@color/system_bar_background_opaque_yf` (`#ff010101`). **Repoint the
+  alias to `@android:color/transparent`** → the bar view is truly transparent. App windows are full‑height
+  `[0,0][768,880]` (they sit *under* the 60px bar), so apps that paint to y=0 show through (verified over
+  `com.android.settings`); apps that inset their content below the bar (radio/BT) still read dark there —
+  that's the app's own top region, not the bar.
+- **Hide the volume indicator**: `com.syu.view.VolLayout @id/vol_layout` → `visibility="gone"` +
+  `layout_width="0.0px"` (don't delete it — it's a code‑referenced SYU ViewGroup; just collapse it).
+- **Thicker wifi** (match 7870): overwrite `ic_wifi_signal_0..4` with a **stroke‑based** arc vector
+  (`android:strokeColor=@android:color/white`, `strokeWidth=2.3`, `strokeLineCap=round`, 3 quadratic
+  arcs + a filled dot) rather than the thin fill arcs — `strokeWidth` is the thickness lever.
+- **Bigger tx/rx data arrows**: `wifi_in`/`wifi_out` (in `status_bar_wifi_group.xml`) are `wrap_content`
+  over `ic_activity_up`/`ic_activity_down`; the stock PNGs live in a huge `drawable-2000x1100` dir so they
+  render tiny. Render 22px white arrow PNGs into `drawable-nodpi` and delete the old ones.
+
 ## Smali edits without losing the `-s` resource tree
 
 Keep your accumulated resource edits in the `-s` decode. Do the smali edit in a **full** decode of the

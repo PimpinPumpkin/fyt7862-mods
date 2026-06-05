@@ -34,8 +34,14 @@ No skin pack — APK drawables. Final look:
   (`#131620`→`#0a0b10`).
 - **Presets** `radio_ch` (196×96): flat dark card `#243049`; `radio_ch_p` (selected) flat slider‑blue
   `#4a72b8`, rounded corners via rsvg. (Dropped an earlier loud blue→cyan gradient.)
-- **Bottom bar** `radio_menu_bk` (768×100): flat `#15171f`; **reflections stripped** from the 154×100
-  `radio_menu_*` icon cells with `geq` alpha=0 below y=60.
+- **Bottom bar** `radio_menu_bk` (768×100): flat `#15171f`; the 154×100 `radio_menu_*` cells redrawn as
+  **labeled Material glyphs** (`scripts/mkradio.py`): icon on top + a text label below — `BAND SCAN ST TA
+  AF PTY LOC NOTES SAVE SET` — white `#d7dbe2`, slider‑blue `_p` (active), dim `#5a5e66` `_u`. The bar's
+  functions are non‑obvious (1st cycles FM bands + AM, one scans, ST locks mono, NOTES is per‑station
+  notes; swipe for more) so the labels disambiguate.
+- **Font → Inter**: radio text is code‑drawn by `com.syu.ctrl.{JText,JButton,JCheckBox}` (extend TextView,
+  no typeface). Inject `setTypeface(Typeface.createFromAsset(getAssets(),"Inter.ttf"))` into each
+  `<init>(Context,MyUi)` (smali, `.locals 2` → v0/v1 free) and bundle `assets/Inter.ttf`.
 
 ## Bluetooth (`com.syu.bt`, activity `.BtAct` → runs as `com.syu.air`‑style uid system)
 
@@ -44,11 +50,22 @@ Uses the **encrypted skin pack** → modernize via the override ([07-skin-system
 - Tab bar: flat `bt_menu_bk`.
 - **Icon set** (`scripts/mkbticons.py`): clean Material glyphs for `bt_menu{dial,contact,history,av,pair,set}`
   (white normal `#d2d6dd`, slider‑blue `#71b5ff` active) + `bt_dialdial` (green circle + phone) /
-  `bt_dialhang` (red circle + rotated phone) + `bt_diallinkcut` (link) + `bt_dialdel` (backspace). Drop all
-  into app res, rebuild — the skin zip is bypassed.
+  `bt_dialhang` (red circle + rotated phone) + `bt_diallinkcut` (link) + `bt_dialdel` (backspace).
+- **Player transport** `btav_{pre,playpause,stop,next}` (+ `bt_navi_av_*`): flat dark `#243049` rounded
+  cards, slider‑blue glyphs (pressed `#4a72b8` + white), matching the dialer.
+- **Album‑art placeholder**: the stock "Bluetooth 5.1" gradient badge + vinyl record were two layers —
+  **`bt_av`** (the shown 38 KB composite) → a flat dark `#243049` rounded card with a centered slider‑blue
+  music note; **`bt_navi_btav`(+`_p`)** (the badge overlay) → transparent. (Find which layer is actually
+  drawn empirically — the badge is hidden when idle.)
+- Drop all into app res, rebuild — the skin zip is bypassed.
 
 ## FYT Settings (`com.syu.settings`)
 
-Recolored to slider blue, but it's a thin wrapper (low impact). **Android Settings** (`com.android.settings`):
-the visible teal is the *framework* `?android:colorAccent` (`#80cbc4`), not an app color — matching it needs a
-platform‑signed framework RRO overlay (root). Left teal by choice.
+**Tab glyphs → modern Material** (`scripts/mksetbt.py`): the bottom tabs `rotate_set_menu_{wifi,device,
+system,factory,people,common}`(+`_p`) are 128×80 cells — redraw as centered Material glyphs (wifi /
+monitor / gear / wrench / person / tune), white `#d7dbe2`, slider‑blue `#71b5ff` active, to match the BT
+set. The body is still the stock skeuomorphic grey: it's code‑drawn via `ActSet.setBackground(...)`, so
+recoloring the unused `bk`/`rotate_bk` drawables is inert — a real dark theme needs the dex. **Android
+Settings** (`com.android.settings`): the visible teal is the *framework* `?android:colorAccent`
+(`#80cbc4`), not an app color — matching it needs a platform‑signed framework RRO overlay (root). Left
+teal by choice.
