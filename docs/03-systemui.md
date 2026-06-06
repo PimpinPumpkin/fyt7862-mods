@@ -46,6 +46,13 @@ All resource‑only (no smali), in the `-s` decode of `status_bar_h.xml` + drawa
   over `ic_activity_up`/`ic_activity_down`; the stock PNGs live in a huge `drawable-2000x1100` dir so they
   render tiny. Render 22px white arrow PNGs into `drawable-nodpi` and delete the old ones.
 
+> **Edge‑to‑edge over apps:** with the bar transparent, what shows under it is the *app's own* top region.
+> Apps whose window background is the app surface look seamless (BT: `windowBackground=@drawable/bt_bk`). Apps
+> that paint their own top strip still show a band — FM radio draws a near‑black top in its root view above
+> `radio_bk`; setting `ActRadio`'s `windowBackground=#131620` fixes the window layer but the root view sits on
+> top, so true seamlessness there needs a code change to the radio's root. Low priority — `radio_bk` is already
+> near‑black (`#131620`), so the band is barely visible.
+
 ## Smali edits without losing the `-s` resource tree
 
 Keep your accumulated resource edits in the `-s` decode. Do the smali edit in a **full** decode of the

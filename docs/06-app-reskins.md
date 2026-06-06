@@ -58,14 +58,31 @@ Uses the **encrypted skin pack** → modernize via the override ([07-skin-system
   music note; **`bt_navi_btav`(+`_p`)** (the badge overlay) → transparent. (Find which layer is actually
   drawn empirically — the badge is hidden when idle.)
 - Drop all into app res, rebuild — the skin zip is bypassed.
+- **Incoming‑call ring**: `Page_PopBtRing` plays **`/mnt/sdcard/.btring/ring.mp3`** via `MyMediaPlayer`
+  (`STREAM_RING`); the app has a built‑in ring picker (copies a chosen file there + saves `name_ring`). The
+  stock tone is loud — drop a quiet local mp3 at that path (a soft 2‑note chime via `ffmpeg sine`,
+  `artifacts/bt_incoming_chime.mp3`) so it's calm and not ear‑splitting over music. Persists across reboots.
+- **In‑call OSD** *(deferred)*: the active‑call bar is `Page_Callin_HalfScreen` (a `com.syu.bt` overlay,
+  skin‑overridable) — restyling it needs a live call to verify, so it's left for an interactive pass.
 
 ## FYT Settings (`com.syu.settings`)
 
 **Tab glyphs → modern Material** (`scripts/mksetbt.py`): the bottom tabs `rotate_set_menu_{wifi,device,
 system,factory,people,common}`(+`_p`) are 128×80 cells — redraw as centered Material glyphs (wifi /
 monitor / gear / wrench / person / tune), white `#d7dbe2`, slider‑blue `#71b5ff` active, to match the BT
-set. The body is still the stock skeuomorphic grey: it's code‑drawn via `ActSet.setBackground(...)`, so
-recoloring the unused `bk`/`rotate_bk` drawables is inert — a real dark theme needs the dex. **Android
+set.
+- **Dark background**: the grey skeuomorphic bg is `rotate_light_bk` (768×1024, portrait/day) / `rotate_dark_bk`
+  (night) — replace both (+ `set_bk`, `rotate_bk`) with a flat `#0e0f13` image. (Recoloring `bk`/`rotate_bk`
+  alone is inert — those aren't the active bg; the SetBkView per‑view setter + these full‑screen bgs are.)
+- **PIN keypad** (`scripts/mksetbt.py`): `set_pin_0..9`(+`_p`), `set_pin_confirm`(+`_p`), `set_pin_delete`(+`_p`)
+  are compiled `R.drawable` refs → overwrite the files with flat dark rounded buttons + white digits/glyphs
+  (Material check / backspace), slider‑blue for pressed + confirm.
+- **Toggles** *(deferred)*: the `JSwitchButton` animated 5‑layer switch (`mBk/mMask/mBottom/mFrame/mBtnNormal`,
+  masked `drawBitmap` w/ `mRealPos`) loads names from the item's `strDrawableExtra` (set dynamically per item) —
+  neither `sw_*` nor `set_sw_*` overrides changed it (verified with colored diagnostics), so the skeuomorphic
+  switch is left for later; the dark bg already removes the grey eyesore.
+
+**Android
 Settings** (`com.android.settings`): the visible teal is the *framework* `?android:colorAccent`
 (`#80cbc4`), not an app color — matching it needs a platform‑signed framework RRO overlay (root). Left
 teal by choice.
