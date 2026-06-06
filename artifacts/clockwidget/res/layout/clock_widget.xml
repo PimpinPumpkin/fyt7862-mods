@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content" android:layout_height="wrap_content"
-  android:orientation="vertical" android:gravity="center" android:padding="4dp">
-  <TextClock android:id="@+id/hour" android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:format12Hour="h" android:format24Hour="HH" android:textSize="66sp"
-    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light" android:includeFontPadding="false"/>
-  <TextClock android:id="@+id/minute" android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:format12Hour="mm" android:format24Hour="mm" android:textSize="66sp"
-    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light" android:includeFontPadding="false"/>
+  android:orientation="vertical" android:gravity="center"
+  android:background="@drawable/clock_pill"
+  android:paddingLeft="44dp" android:paddingRight="44dp" android:paddingTop="24dp" android:paddingBottom="30dp">
   <TextClock android:id="@+id/date" android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:format12Hour="EEE, MMM d" android:format24Hour="EEE, MMM d" android:textSize="14sp"
-    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif" android:layout_marginTop="6dp"
-    android:letterSpacing="0.03"/>
+    android:format12Hour="EEE, MMM d" android:format24Hour="EEE, MMM d" android:textSize="15sp"
+    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-medium" android:letterSpacing="0.02"
+    android:includeFontPadding="false" android:layout_marginBottom="10dp"/>
+  <TextClock android:id="@+id/hour" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:format12Hour="hh" android:format24Hour="HH" android:textSize="74sp"
+    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif" android:textStyle="bold"
+    android:includeFontPadding="false"/>
+  <TextClock android:id="@+id/minute" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:format12Hour="mm" android:format24Hour="mm" android:textSize="74sp"
+    android:textColor="#FFFFFFFF" android:fontFamily="sans-serif" android:textStyle="bold"
+    android:includeFontPadding="false"/>
 </LinearLayout>

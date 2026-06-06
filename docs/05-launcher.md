@@ -42,3 +42,18 @@ cmd package set-home-activity app.lawnchair/...
 
 Re‑add the clock widget by hand afterward (widget bindings don't survive the reinstall). The patched APK
 is in `artifacts/launcher/`.
+
+## Icon accent color (Material You / themed icons)
+
+Home icons are **Lawnicons** (themed monochrome) tinted by the system. On the **7870 (A13)** that tint is
+Material You (monet) from the wallpaper → purple. The **7862 is A10 — no Material You** — so themed icons fall
+back to **white**, and Lawnchair's `accent_color` does **not** drive that tint.
+
+- Lawnchair's `accent_color` (DataStore `files/datastore/preferences.preferences_pb`) serializes a custom
+  color as **`custom|#aarrggbb`** (e.g. `custom|#ffb69df8`); sentinels are `wallpaper_primary` /
+  `system_accent` / `default`. (Found in the obfuscated `s9/d$a`+`d$b` `ColorOption` classes — `%08x`.)
+  Setting it colors Lawnchair's **own UI**, not the themed app icons on A10.
+- Hand‑editing the proto: it's a `PreferenceMap` — each entry is `0a<len> 0a 0c<key> 12<len> 2a<slen><value>`.
+  **Update the outer entry length too**, or it won't parse and Lawnchair crashes to the fallback launcher
+  (`Unable to parse preferences proto`). Force‑stop Lawnchair, `cat` the new file in, back up first.
+- Net: purple icons on A10 would need a framework monet backport or a patched Lawnchair — left white.

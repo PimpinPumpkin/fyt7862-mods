@@ -6,10 +6,13 @@ looks like it and adds a **color picker**.
 
 Source: `artifacts/clockwidget/` (package `com.fyt7862.clock`, label **FYT Clock**).
 
-- **Widget** = three **vertically stacked** elements — hour (`h`, 66sp) over minute (`mm`, 66sp) over date
-  (`EEE, MMM d`, 14sp), all `sans-serif-light`, white default — the 7870's stacked look (not `h:mm` on one
-  line). `TextClock` is `@RemoteView`‑safe and self‑updates, so no service/alarm is needed. A
-  `PreviewActivity` (launcher entry) inflates the widget into a dark frame for on‑device preview.
+- **Widget** = three stacked elements on a dark rounded **pill** (`@drawable/clock_pill` ≈ `#CC2C2C34`, r54):
+  hour (`hh`, leading‑zero) over minute (`mm`) at **74sp bold**, over date (`EEE, MMM d`, 15sp) — white, sized
+  + spaced to match the 7870 (which is Deskclock `DigitalStackedAppWidget` + Lawnchair's widget‑bg pill). Cell
+  `minHeight=150dp` so it's tall enough. `TextClock` is `@RemoteView`‑safe and self‑updates (no service/alarm).
+  A `PreviewActivity` (launcher entry) renders it in a dark frame for on‑device preview. Color stays selectable
+  (default white) via the config picker. **Gotcha:** use `format12Hour="hh"` (not `h`) to match the 7870's
+  leading zero; resizing an existing instance needs re‑adding the widget (cell size is fixed at placement).
 - **Config activity** launches when you drop the widget; it shows swatches — **white (default, = the 7870),**
   slider‑blue `#71B5FF`, red, green, amber, purple — and applies the pick with
   `RemoteViews.setTextColor` (saved per‑widget in `SharedPreferences`).
