@@ -81,7 +81,7 @@ set.
   alone is inert — those aren't the active bg; the SetBkView per‑view setter + these full‑screen bgs are.)
 - **PIN keypad** (`scripts/mksetbt.py`): `set_pin_0..9`(+`_p`), `set_pin_confirm`(+`_p`), `set_pin_delete`(+`_p`)
   are compiled `R.drawable` refs → overwrite the files with flat dark rounded buttons + white digits/glyphs
-  (Material check / backspace), slider‑blue for pressed + confirm.
+  (white backspace glyph for delete; the confirm is left a plain button -- the app draws its own "Confirm" text, so a baked-in checkmark collides with it), slider‑blue for pressed + confirm.
 - **Toggles**: the on/off switch is `JSwitchButton`; its drawables come from the markup **`drawableExtra`**
   attr (comma-split: `MyUi` -> `Markup.GetAttr("drawableExtra")` -> `setStrDrawableExtra`), NOT `sw_*`/`set_sw_*`
   (those aren't the switch -- why the earlier overrides were inert). A 2-element `drawableExtra` -> 2-state image
