@@ -62,8 +62,13 @@ Uses the **encrypted skin pack** → modernize via the override ([07-skin-system
   (`STREAM_RING`); the app has a built‑in ring picker (copies a chosen file there + saves `name_ring`). The
   stock tone is loud — drop a quiet local mp3 at that path (a soft 2‑note chime via `ffmpeg sine`,
   `artifacts/bt_incoming_chime.mp3`) so it's calm and not ear‑splitting over music. Persists across reboots.
-- **In‑call OSD** *(deferred)*: the active‑call bar is `Page_Callin_HalfScreen` (a `com.syu.bt` overlay,
-  skin‑overridable) — restyling it needs a live call to verify, so it's left for an interactive pass.
+- **In-call OSD**: the active-call bar + DTMF keypad are `com.syu.bt` skin drawables, override via app
+  res (07-skin-system). Keypad numbers `bt_dial0..9`, `*`=`bt_dialx`, `#`=`bt_dialj` (each a full grey glossy
+  button); bar = `bt_dialtxt_bk` (call-info box), `bt_dialsound` (headset/audio), `bt_dial_showkey` /
+  `bt_keyboardshow` / `bt_dial_keyboard_show` / `bt_keyboardhide` (keypad toggle), `bt_navihang` (end-call).
+  Re-rendered all flat: dark `#21242e` rounded buttons + white digits/glyphs, slider-blue `_p`; the call-info
+  box flat `#1a1c24`; `bt_navihang` a flat red `#c0392b` button + white Material call-end glyph. Drop into app
+  res, rebuild, reboot.
 
 ## FYT Settings (`com.syu.settings`)
 
@@ -77,10 +82,14 @@ set.
 - **PIN keypad** (`scripts/mksetbt.py`): `set_pin_0..9`(+`_p`), `set_pin_confirm`(+`_p`), `set_pin_delete`(+`_p`)
   are compiled `R.drawable` refs → overwrite the files with flat dark rounded buttons + white digits/glyphs
   (Material check / backspace), slider‑blue for pressed + confirm.
-- **Toggles** *(deferred)*: the `JSwitchButton` animated 5‑layer switch (`mBk/mMask/mBottom/mFrame/mBtnNormal`,
-  masked `drawBitmap` w/ `mRealPos`) loads names from the item's `strDrawableExtra` (set dynamically per item) —
-  neither `sw_*` nor `set_sw_*` overrides changed it (verified with colored diagnostics), so the skeuomorphic
-  switch is left for later; the dark bg already removes the grey eyesore.
+- **Toggles**: the on/off switch is `JSwitchButton`; its drawables come from the markup **`drawableExtra`**
+  attr (comma-split: `MyUi` -> `Markup.GetAttr("drawableExtra")` -> `setStrDrawableExtra`), NOT `sw_*`/`set_sw_*`
+  (those aren't the switch -- why the earlier overrides were inert). A 2-element `drawableExtra` -> 2-state image
+  (`bIsCheckBox`; `setIconName` loads `[0]`=off / `[1]`=on); a single `drawable=` attr -> bg toggle
+  (`updateBackground`: `base` off, `base+"_p"` on). The portrait slide switch is **`rotate_set_bottom`/`_p`**
+  (86x42, glossy silver knob); landscape twin **`set_bottom`/`_p`** (95x53). Overwrote all four flat: dark
+  `#30333b` track + grey `#9aa0ab` knob (off, knob-left); slider-blue `#4a72b8` track + white knob (on,
+  knob-right). (`check_sevenlight1..7` glossy boxes are the 7-colour-pick **checkboxes** -- left as-is.)
 
 **Android
 Settings** (`com.android.settings`): the visible teal is the *framework* `?android:colorAccent`
