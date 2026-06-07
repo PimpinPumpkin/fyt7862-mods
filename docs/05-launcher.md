@@ -57,3 +57,24 @@ back to **white**, and Lawnchair's `accent_color` does **not** drive that tint.
   **Update the outer entry length too**, or it won't parse and Lawnchair crashes to the fallback launcher
   (`Unable to parse preferences proto`). Force‑stop Lawnchair, `cat` the new file in, back up first.
 - Net: purple icons on A10 would need a framework monet backport or a patched Lawnchair — left white.
+
+## Icon color → purple on A10 (the real mechanism)
+
+The home icons are the **Lawnicons pack** (`app.lawnchair.lawnicons`) monochrome vectors, tinted by the pack's
+own `@color/primaryForeground`: in `values-night/colors.xml` that's `@color/white` (A10), but
+`values-night-v31` maps it to a monet color (A13). **That one resource is the entire 7862-vs-7870 difference** —
+not Material You at the launcher layer. Lawnchair's own tint hooks (`ThemedIconDrawable.getColors`,
+`MonochromeIconFactory.mDrawPaint`) are **inert on A10** — proven with a red[0]/purple[1] diagnostic that
+changed nothing.
+
+**Fix:** decompile the Lawnicons apk, set `values-night/colors.xml` `primaryForeground` → literal `#ffb69df8`
+(the 7870 accent), rebuild + reinstall. One color recolors **all** themed icons, including non-pack apps
+(`com.syu.*`). Rebuild gotchas (the pack targets SDK 36; apktool's A10 framework can't link it):
+- Install the 7870's `framework-res.apk` as a separate `apktool if --frame-path /tmp/a13frame` and build with
+  `apktool b --frame-path /tmp/a13frame` (A13 framework has the newer attrs).
+- Delete `windowLayoutInDisplayCutoutMode` from the splash styles (apktool decompiles the enum as raw `3`/`always`,
+  which the framework won't link) and `res/xml/_generated_res_locale_config.xml` (+ its manifest `localeConfig`
+  ref; uses API-35 `defaultLocale`).
+- Debug-signing is fine — **Lawnchair does NOT verify the pack signature**. (The earlier "rejected/real icons"
+  read was just capturing before the themed map re-processed.) Themed icons re-apply on the next launcher start
+  (`am force-stop app.lawnchair`) — no full reboot needed. Recolored pack: `artifacts/launcher/lawnicons-purple.apk`.
