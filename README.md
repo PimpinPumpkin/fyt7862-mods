@@ -19,6 +19,27 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 | Platform | FYT **6315** (`lsec6315` recovery), `ro.fyt.uiid=3`, manufacturer `135` |
 | Launcher | `com.android.launcher6` (replaced with Lawnchair) |
 
+## Gallery — how it looks now
+
+<table>
+<tr>
+<td align="center"><img src="screenshots/after/home.png" width="200"><br><sub><b>Home</b> — Lawnchair + custom clock widget</sub></td>
+<td align="center"><img src="screenshots/after/quicksettings_quick.png" width="200"><br><sub><b>Quick settings</b> — quick pull</sub></td>
+<td align="center"><img src="screenshots/after/quicksettings.png" width="200"><br><sub><b>Quick settings</b> — expanded</sub></td>
+<td align="center"><img src="screenshots/after/radio.png" width="200"><br><sub><b>FM radio</b></sub></td>
+</tr>
+<tr>
+<td align="center"><img src="screenshots/after/bt_dialer.png" width="200"><br><sub><b>Bluetooth</b> dialer</sub></td>
+<td align="center"><img src="screenshots/after/eq.png" width="200"><br><sub><b>Equalizer</b></sub></td>
+<td align="center"><img src="screenshots/after/settings.png" width="200"><br><sub><b>Settings</b></sub></td>
+<td align="center"><img src="screenshots/after/clock_config.png" width="200"><br><sub><b>Clock widget</b> config</sub></td>
+</tr>
+</table>
+
+Centered‑clock/left‑wifi status bar, flat nav bar with blue volume slider, and purple themed (Lawnicons) app
+icons show across all shots. More in **[screenshots/](screenshots/)** — before/after, 7870 comparisons, and the
+full build‑process archive under [screenshots/testing/](screenshots/testing/).
+
 ## What's in here
 
 | Area | Doc | Result |
@@ -36,7 +57,8 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 
 `artifacts/` holds the built APKs, splash images, configs and the root package.
 `scripts/` holds the reusable generators (gradients, icons, the install helper).
-`screenshots/` holds before/after captures and 7870 comparisons — see [screenshots/](screenshots/).
+`screenshots/` holds before/after captures, 7870 comparisons, and a full build‑process archive
+(`screenshots/testing/`) — see [screenshots/](screenshots/).
 
 ## Quick start (high level)
 

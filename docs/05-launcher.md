@@ -78,3 +78,26 @@ changed nothing.
 - Debug-signing is fine — **Lawnchair does NOT verify the pack signature**. (The earlier "rejected/real icons"
   read was just capturing before the themed map re-processed.) Themed icons re-apply on the next launcher start
   (`am force-stop app.lawnchair`) — no full reboot needed. Recolored pack: `artifacts/launcher/lawnicons-purple.apk`.
+
+## Icon vertical alignment vs the 7870 — already matched (no patch needed)
+
+Pulled both units' workspace DBs (`/data/data/app.lawnchair/databases/launcher_5_4_4.db`) and compared
+`favorites` (`container=-100`, the workspace):
+
+- **Same grid** on both (`launcher_5_4_4.db`), and the shared icons sit in **identical cells** — Spotify/Maps/
+  Music at `cellY=2`, Radio/CarLink/Bluetooth/Settings at `cellY=3`. On‑screen the two icon rows land at the
+  **same Y** on both units (verified with a side‑by‑side + gridlines).
+- The only difference: the 7870 has an **extra third row** of throwaway test apps (`cellY=4`) the 7862 doesn't.
+
+So there was **nothing to patch** — same grid, same cells, same vertical position. The "icons sit higher"
+impression earlier was the **transient boot behavior** (the nav volume bar briefly shoving the workspace up
+before it settles), not a persistent layout state. Left the grid as‑is.
+
+## Why `pref_icon_shape_path` reads `pack:/` yet the icons are purple
+
+`shared_prefs/com.android.launcher3.device.prefs.xml` shows `pref_icon_shape_path = cupertino,no-theme,pack:/`
+— i.e. **no Lawnchair icon pack selected** — which looks like the themed icons shouldn't apply. They do anyway:
+the purple comes from the **recolored Lawnicons monochrome pack's `primaryForeground`** (section above), tinted
+by the system — **not** from an icon‑pack selection in that pref. So `pack:/` is a red herring; don't chase it.
+(The 7870's same pref reads `pack:app.lawnchair.lawnicons/`, but that difference is incidental — the tint
+mechanism is the pack color resource, not the pref.)
