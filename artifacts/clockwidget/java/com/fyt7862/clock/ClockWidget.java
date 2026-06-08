@@ -10,6 +10,18 @@ public class ClockWidget extends AppWidgetProvider {
   static final int DEF_TEXT = 0xFFC8BFFF;
   static final int DEF_BG   = 0xFF312E41;
   static final int DEF_BGA  = 204;
+  // Background shapes, indexed by the "shape" pref. 0 = pill (default).
+  static final int[] SHAPES = {
+    R.drawable.clock_shape_pill,
+    R.drawable.clock_shape_rounded,
+    R.drawable.clock_shape_ellipse,
+    R.drawable.clock_shape_rect,
+  };
+  static final String[] SHAPE_NAMES = { "Pill", "Rounded", "Ellipse", "Rectangle" };
+  static int shapeIdx(SharedPreferences p) {
+    int s = p.getInt("shape", 0);
+    return (s < 0 || s >= SHAPES.length) ? 0 : s;
+  }
   static SharedPreferences prefs(Context c) { return c.getSharedPreferences("clk", Context.MODE_PRIVATE); }
   static void update(Context ctx, AppWidgetManager mgr, int id) {
     SharedPreferences p = prefs(ctx);
@@ -20,6 +32,7 @@ public class ClockWidget extends AppWidgetProvider {
     v.setTextColor(R.id.hour, textColor);
     v.setTextColor(R.id.minute, textColor);
     v.setTextColor(R.id.date, textColor);
+    v.setImageViewResource(R.id.bg, SHAPES[shapeIdx(p)]);
     v.setInt(R.id.bg, "setColorFilter", bgColor);
     v.setInt(R.id.bg, "setImageAlpha", bgAlpha);
     mgr.updateAppWidget(id, v);
