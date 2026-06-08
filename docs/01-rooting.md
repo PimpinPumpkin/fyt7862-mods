@@ -11,6 +11,12 @@ So a testkey‑signed OTA that flashes *only* a Magisk‑patched `boot.img` is a
 the bootloader, TZ, or verified partitions, so AVB stays happy. A bad signature or a too‑old timestamp
 is **refused with nothing written** (fails safe).
 
+> **Why not just flash Mario Dantas' MD‑EDITION kernel?** The usual FYT root path is to flash his
+> Magisk‑EDITION (MD‑EDITION) kernel and then enable root by **registering in the FYT app**. *At the time
+> of writing, that registration / root‑enable step is broken* — the kernel flashes fine but root is never
+> granted afterward. So this kit takes the self‑contained route instead: a testkey‑signed **boot‑only OTA
+> that flashes a Magisk‑patched boot directly** — no kernel swap, no FYT‑app registration.
+
 ## Prerequisites
 
 - ADB to the unit (see [00-overview.md](00-overview.md) for the USB‑A↔A + Device‑role + reboot dance).
