@@ -1,6 +1,6 @@
 # FYT UIS7862 — Mods, Root & Reskin Kit
 
-Everything needed to take a **stock FYT (Topway/SYU) UIS7862 head unit** and turn it into a rooted,
+Everything needed to take a **stock FYT (SYU) UIS7862 head unit** and turn it into a rooted,
 de‑skeuomorphized, dark‑themed unit: root, custom boot splash, a 7870‑style SystemUI status bar,
 a flat nav bar, a single‑page Lawnchair launcher, and modernized stock apps (EQ, FM radio, Bluetooth,
 Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
@@ -8,6 +8,13 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 > ⚠️ **This roots and modifies the system partition.** Done wrong it can soft‑brick the unit.
 > The root method fails *safe* (a bad OTA is refused, nothing written), and there's a documented
 > recovery, but read [docs/01-rooting.md](docs/01-rooting.md) fully before flashing.
+
+## Background
+
+This skin was made to **copy the look of a rare vertical Tesla‑style FYT UIS7870** head unit I bought — which
+had too many bugs to keep. The **UIS7862** is still a great platform: tried‑and‑true and rock‑solid. So rather
+than fight the 7870's bugs, I brought its cleaner look over to the 7862 and pushed it further — giving a
+proven platform that same UI consistency and polish.
 
 ## The unit
 
@@ -20,6 +27,10 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 | Launcher | `com.android.launcher6` (replaced with Lawnchair) |
 
 ## Gallery — how it looks now
+
+**Before → after** — the stock home vs. the modded result:
+
+<p align="center"><img src="screenshots/comparison/home_before_after.png" width="540"></p>
 
 <table>
 <tr>
