@@ -20,6 +20,7 @@ public class PreviewActivity extends Activity {
   final int[] textColors = {0xFFFFFFFF, 0xFFB69DF8, 0xFF71B5FF, 0xFFD0D0D0, 0xFFFF5252, 0xFF69F0AE, 0xFFFFD740, 0xFF202020};
   final int[] bgColors   = {0xFF0E0F13, 0xFF191919, 0xFF2C2C34, 0xFF1A2438, 0xFF4A72B8, 0xFFB69DF8, 0xFF000000, 0xFFFFFFFF};
   ImageView bgView; TextClock h, m, d;
+  ColorPickerView picker; boolean pickText = true;
 
   int dp(int v){ return (int)(v*getResources().getDisplayMetrics().density + 0.5f); }
   SharedPreferences prefs(){ return ClockWidget.prefs(this); }
@@ -57,6 +58,16 @@ public class PreviewActivity extends Activity {
     root.addView(hexRow(true));
     root.addView(label("Background color — hex"));
     root.addView(hexRow(false));
+    root.addView(label("Color picker"));
+    picker = new ColorPickerView(this);
+    picker.setColor(prefs().getInt("text", ClockWidget.DEF_TEXT));
+    picker.setListener(new ColorPickerView.OnColor(){ public void onColor(int c){
+      prefs().edit().putInt(pickText?"text":"bg", c).apply(); apply();
+    }});
+    root.addView(pickerTargetRow());
+    LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(210));
+    pp.topMargin = dp(8); picker.setLayoutParams(pp);
+    root.addView(picker);
 
     setContentView(sc);
     apply();
@@ -132,6 +143,24 @@ public class PreviewActivity extends Activity {
       prefs().edit().putInt(isText?"text":"bg", c).apply(); apply();
     }});
     row.addView(et); row.addView(set);
+    return row;
+  }
+
+  LinearLayout pickerTargetRow(){
+    LinearLayout row = new LinearLayout(this);
+    row.setOrientation(LinearLayout.HORIZONTAL);
+    final Button bt = new Button(this), bb = new Button(this);
+    bt.setText("Text"); bb.setText("Background");
+    View.OnClickListener sel = new View.OnClickListener(){ public void onClick(View v){
+      pickText = (v==bt);
+      bt.setAlpha(pickText?1f:0.45f); bb.setAlpha(pickText?0.45f:1f);
+      picker.setColor(prefs().getInt(pickText?"text":"bg", pickText?ClockWidget.DEF_TEXT:ClockWidget.DEF_BG));
+    }};
+    bt.setOnClickListener(sel); bb.setOnClickListener(sel);
+    bt.setAlpha(1f); bb.setAlpha(0.45f);
+    bt.setLayoutParams(new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.WRAP_CONTENT,1f));
+    bb.setLayoutParams(new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.WRAP_CONTENT,1f));
+    row.addView(bt); row.addView(bb);
     return row;
   }
 
