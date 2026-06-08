@@ -78,3 +78,15 @@ Stock SYU QS uses one hardcoded active blue `#41A4F7` in two places:
   code (the `getCircleColor` call has no `move-result`) — the red herring; the color lives in the assets, not
   `colorAccent`. Recolor those PNGs `#41A4F7` → theme accent (`#7176FA`) and rebuild. See
   `scripts/recolor_qs_active.py`.
+
+Plus two declutter/finish tweaks:
+
+- **Panel background gradient** — the pull‑down bg is `quick_settings_background.png` (a flat `#1C1C1C`
+  rounded‑rect, 1241×536; `qs_panel.xml` → `quick_settings_background` view). Recolored its RGB to a vertical
+  gradient `#1C1D26` (top) → `#060608` (bottom) — the same fade as the nav/volume bar — while keeping its alpha
+  (rounded shape), so the QS reads like the nav bar instead of a flat slab.
+  `artifacts/systemui-qs/quick_settings_background.png`.
+- **Tile declutter** — the QS tile list is a plain string: `quick_settings_tiles_default` in `strings.xml`
+  (`quick_settings_tiles = "default"` selects it). Removed `shurtcut:standby` + `shurtcut:reboot` →
+  `wifi,night,cell,airplane,shurtcut:blackscreen,shurtcut:clean` (6 tiles → fits one state, so the second
+  "full‑pull" page where reboot appeared out of nowhere is gone).
