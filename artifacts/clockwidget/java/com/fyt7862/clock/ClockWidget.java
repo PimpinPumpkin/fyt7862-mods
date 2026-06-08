@@ -6,9 +6,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 public class ClockWidget extends AppWidgetProvider {
-  // Global defaults: white text, dark pill, ~80% opacity (CC).
-  static final int DEF_TEXT = 0xFFFFFFFF;
-  static final int DEF_BG   = 0xFF2C2C34;
+  // Global defaults: lavender text + purple-gray pill (7870 match), ~80% opacity.
+  static final int DEF_TEXT = 0xFFC8BFFF;
+  static final int DEF_BG   = 0xFF312E41;
   static final int DEF_BGA  = 204;
   static SharedPreferences prefs(Context c) { return c.getSharedPreferences("clk", Context.MODE_PRIVATE); }
   static void update(Context ctx, AppWidgetManager mgr, int id) {

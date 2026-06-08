@@ -17,11 +17,11 @@
       android:includeFontPadding="false" android:layout_marginBottom="10dp"/>
     <TextClock android:id="@+id/hour" android:layout_width="wrap_content" android:layout_height="wrap_content"
       android:format12Hour="hh" android:format24Hour="HH" android:textSize="80sp"
-      android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light"
+      android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-medium"
       android:includeFontPadding="false"/>
     <TextClock android:id="@+id/minute" android:layout_width="wrap_content" android:layout_height="wrap_content"
       android:format12Hour="mm" android:format24Hour="mm" android:textSize="80sp"
-      android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-light"
+      android:textColor="#FFFFFFFF" android:fontFamily="sans-serif-medium"
       android:includeFontPadding="false"/>
   </LinearLayout>
 </RelativeLayout>
