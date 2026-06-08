@@ -5,7 +5,8 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 - **`after/`** — current state, how the unit looks now (the README gallery pulls from here).
 - **`before/`** — stock SYU (glossy, skeuomorphic), where captures were preserved.
 - **`comparison/`** — stock ⟶ modded, and 7862‑vs‑7870 target comparisons.
-- **`testing/`** — the full build‑process archive: ~158 raw device captures grouped by feature. See [testing/](testing/).
+- The full raw build‑process archive (~158 device captures) is kept in a separate **private** research repo — it
+  contains incidental on‑screen PII (WiFi SSID, a dialed phone number), so it's not published here.
 
 ## `after/` — modded, current (flat, dark, 7870‑style)
 | File | What |
