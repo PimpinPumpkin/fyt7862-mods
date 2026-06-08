@@ -37,8 +37,9 @@ Settings) on a shared dark + slider‑blue (`#71B5FF`) design language.
 </table>
 
 Centered‑clock/left‑wifi status bar, flat nav bar with blue volume slider, and purple themed (Lawnicons) app
-icons show across all shots. More in **[screenshots/](screenshots/)** — before/after, 7870 comparisons, and the
-full build‑process archive under [screenshots/testing/](screenshots/testing/).
+icons show across all shots. More in **[screenshots/](screenshots/)** — before/after and 7870 comparisons. (The
+full raw build‑process archive is kept in a separate **private** research repo — it contains incidental on‑screen
+PII, so only the curated shots are published here.)
 
 ## What's in here
 
@@ -57,8 +58,7 @@ full build‑process archive under [screenshots/testing/](screenshots/testing/).
 
 `artifacts/` holds the built APKs, splash images, configs and the root package.
 `scripts/` holds the reusable generators (gradients, icons, the install helper).
-`screenshots/` holds before/after captures, 7870 comparisons, and a full build‑process archive
-(`screenshots/testing/`) — see [screenshots/](screenshots/).
+`screenshots/` holds before/after captures and 7870 comparisons — see [screenshots/](screenshots/).
 
 ## Quick start (high level)
 
