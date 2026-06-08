@@ -70,11 +70,11 @@ Stock SYU QS uses one hardcoded active blue `#41A4F7` in two places:
   referenced by `brightness_progress_drawable.xml`. **Fixed** by swapping the `<clip android:drawable=…png>`
   for an inline `<clip><shape><gradient>` = the volume‑slider purple→cyan (`#7176FA → #6CDDFA`, thin r5). Pure
   resource edit — `artifacts/systemui-qs/brightness_progress_drawable.xml`.
-- **Active tile circle** — *not* cleanly fixable, **deliberately left blue**. The fill is
-  `android.R.attr.colorAccent` (`0x1010435`) resolved against the **framework** `Theme.DeviceDefault.QuickSettings`
-  (the `qs_theme` parent) = `#41A4F7`. Overriding `colorAccent`/`colorControlActivated` in `qs_theme` does **not**
-  reach it. `QSTileBaseView.mColorActive`/`getCircleColor` are **dead code** — the `getCircleColor(state)` call in
-  the state handler has no `move-result`, so the value is discarded; patching that field is a verified no‑op. The
-  circle is painted through a SYU path keyed off the framework accent, so changing it needs a `framework-res`
-  `colorAccent` edit (affects every app, bootloop‑risky). The brightness gradient is the dominant, always‑visible
-  blue — fixing that was the win; the circle only shows on active toggles.
+- **Active tile circle** — **fixed by recoloring baked PNGs** (no smali, no framework, no bootloop). The active
+  tiles are *not* tinted at runtime: `QSIconViewImpl.setIcon` swaps to `icon_p_save` with the color filter
+  **cleared** for the active state, because SYU bakes the `#41A4F7` blue straight into per‑tile "pressed" PNGs —
+  the `_p` / `_lsec` variants (`ic_qs_wifi_connected_lsec`, `ic_signal_airplane_lsec_p`, `icon_sys_reboot_p`,
+  `qs_screenshot_p`, `bluethooth_lsec_p`, … 27 in all). `QSTileBaseView.mColorActive`/`getCircleColor` are dead
+  code (the `getCircleColor` call has no `move-result`) — the red herring; the color lives in the assets, not
+  `colorAccent`. Recolor those PNGs `#41A4F7` → theme accent (`#7176FA`) and rebuild. See
+  `scripts/recolor_qs_active.py`.
