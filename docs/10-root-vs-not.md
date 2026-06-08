@@ -1,6 +1,6 @@
 # 10 — What needs root, what doesn't
 
-If you want to apply these mods to *another* FYT (Topway/SYU) unit, here's the split.
+If you want to apply these mods to *another* FYT (SYU) unit, here's the split.
 The deciding factor is simple: **does it drop into the app drawer, or does it replace
 something the device shipped with?**
 
