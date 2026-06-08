@@ -87,8 +87,11 @@ Plus two declutter/finish tweaks:
   (rounded shape), so the QS reads like the nav bar instead of a flat slab.
   `artifacts/systemui-qs/quick_settings_background.png`.
 - **Tile declutter + even spread** — the QS tile list is a plain string: `quick_settings_tiles_default` in
-  `strings.xml` (`quick_settings_tiles = "default"` selects it). Removed `shurtcut:standby` (kept reboot) →
-  `wifi,night,cell,airplane,shurtcut:blackscreen,shurtcut:clean,shurtcut:reboot` (7 tiles). Then dropped
-  `quick_settings_num_columns` 8→7 and `quick_qs_panel_max_columns` 9→7 (`integers.xml`) so the 7 tiles spread
-  evenly across the full width instead of left‑clustering with a right‑side gap — also gives the labels a touch
-  more room.
+  `strings.xml` (`quick_settings_tiles = "default"` selects it). Removed `shurtcut:standby` and `shurtcut:clean`
+  (kept reboot) → `wifi,night,cell,airplane,shurtcut:blackscreen,shurtcut:reboot` (6 tiles), and set
+  `quick_settings_num_columns` + `quick_qs_panel_max_columns` to **6** (`integers.xml`) so they spread evenly to
+  fill the width instead of left‑clustering with a gap.
+- **Tile labels** — shortened the long ones so they stop ellipsizing: `airplane_mode` → **Flight**,
+  `quick_settings_night_display_label` → **Night**, `quick_setting_blackscreen_label` (+`_fyt`) → **Sleep** (the
+  tile just kills the screen — audio keeps playing — so "Sleep" fits better than "Off Screen"). The wifi tile
+  shows the live SSID (unchanged).
