@@ -101,3 +101,22 @@ Plus two declutter/finish tweaks:
 > trash icon already does that). To put either back: add `shurtcut:standby` and/or `shurtcut:clean` to
 > `quick_settings_tiles_default` in `strings.xml`, and bump `quick_settings_num_columns` +
 > `quick_qs_panel_max_columns` in `integers.xml` to the new tile count (7 or 8) so they still fill the row.
+
+## Header glyphs
+
+The QS header's settings (gear) + screenshot buttons used dated SYU icons (chunky gear + literal scissors).
+Swapped for clean Material glyphs (white default, purple `#7176FA` pressed), centered in the original PNG sizes
+via `rsvg-convert` (SVG sources in `artifacts/systemui-qs/glyphs/`):
+- gear: `icon_settings_button.png` (+`_p`/`_white`/`_p_white`) → Material **settings**.
+- screenshot: `icon_sys_screenshot.png` (+`_white`) → Material **crop_free** (a viewfinder frame — reads as
+  "capture the screen"). The header uses the base `icon_sys_screenshot` / `icon_settings_button` set (assigned
+  in smali), *not* the `_tzy_*` selector variants — `qs_screenshot*` is a different, unused drawable.
+
+## App-switcher icons — not themed (and why)
+
+The recents/app-switcher is **`com.android.launcher3/…RecentsActivity`** (stock Launcher3 quickstep), a
+separate package from the home launcher (`app.lawnchair`). It renders each task's real app icon from
+PackageManager and has no hook into Lawnchair's icon pack, so recents icons stay un‑themed (verified: FM radio
+shows its teal icon, not the purple pack version). Theming them would need the recents provider swapped to
+Lawnchair (risky; its recents would likely still use the real task icon) or a smali patch to Launcher3's
+RecentsActivity to apply the pack — neither clean. Left as‑is.
