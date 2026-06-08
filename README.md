@@ -45,6 +45,9 @@ proven platform that same UI consistency and polish.
 <td align="center"><img src="screenshots/after/settings.png" width="200"><br><sub><b>Settings</b></sub></td>
 <td align="center"><img src="screenshots/after/clock_config.png" width="200"><br><sub><b>Clock widget</b> config</sub></td>
 </tr>
+<tr>
+<td align="center" colspan="4"><img src="screenshots/after/incall_osd.png" width="210"><br><sub><b>In‑call OSD</b> — the Bluetooth call overlay above the nav bar (number redacted)</sub></td>
+</tr>
 </table>
 
 Centered‑clock/left‑wifi status bar, flat nav bar with blue volume slider, and purple themed (Lawnicons) app

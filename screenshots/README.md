@@ -19,6 +19,7 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 | `eq.png` | Dark‑gradient graphic equalizer |
 | `settings.png` | Flattened SYU Settings |
 | `clock_config.png` | Clock widget config — swatches, hex entry, **visual color picker** |
+| `incall_osd.png` | **In‑call OSD** — Bluetooth call overlay (talk timer + hangup); phone number redacted |
 | `steering.png` | Flat steering‑wheel control page |
 
 ## `before/` — stock SYU (glossy, skeuomorphic)
