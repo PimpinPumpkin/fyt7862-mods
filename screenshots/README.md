@@ -2,6 +2,24 @@
 
 Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 
+- **`after/`** — current state, how the unit looks now (the README gallery pulls from here).
+- **`before/`** — stock SYU (glossy, skeuomorphic), where captures were preserved.
+- **`comparison/`** — stock ⟶ modded, and 7862‑vs‑7870 target comparisons.
+- **`testing/`** — the full build‑process archive: ~158 raw device captures grouped by feature. See [testing/](testing/).
+
+## `after/` — modded, current (flat, dark, 7870‑style)
+| File | What |
+|---|---|
+| `home.png` | Lawnchair home: custom clock widget + purple themed (Lawnicons) icons |
+| `quicksettings_quick.png` | Quick settings — quick pull (tile row: WiFi/Night/Data/Flight/Sleep/Reboot) |
+| `quicksettings.png` | Quick settings — expanded: header w/ Material glyphs, 6 tiles, purple→cyan brightness |
+| `radio.png` | Reskinned FM radio (flat presets, dark) |
+| `bt_dialer.png` | Flat square Bluetooth dialer keypad |
+| `eq.png` | Dark‑gradient graphic equalizer |
+| `settings.png` | Flattened SYU Settings |
+| `clock_config.png` | Clock widget config — swatches, hex entry, **visual color picker** |
+| `steering.png` | Flat steering‑wheel control page |
+
 ## `before/` — stock SYU (glossy, skeuomorphic)
 | File | What |
 |---|---|
@@ -9,18 +27,6 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 | `eq.png` | Stock EQ |
 | `radio.png` | Stock radio |
 | `boot_logo.png` | Stock boot logo |
-
-## `after/` — modded (flat, dark, 7870‑style)
-| File | What |
-|---|---|
-| `home.png` | Lawnchair home: clock widget (medium font, lavender on purple‑gray) + purple themed icons |
-| `settings.png` | Flattened Settings |
-| `eq.png` | Dark‑gradient EQ |
-| `bt_dialer.png` | Flat square dialer keypad |
-| `steering.png` | Flat steering‑wheel control page |
-| `radio.png` | Reskinned radio |
-| `quicksettings.png` | Quick‑settings panel |
-| `clock_config.png` | Clock widget config — swatches, hex entry, **visual color picker** |
 
 ## `comparison/`
 | File | What |
