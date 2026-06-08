@@ -52,6 +52,23 @@ icons show across all shots. More in **[screenshots/](screenshots/)** — before
 full raw build‑process archive is kept in a separate **private** research repo — it contains incidental on‑screen
 PII, so only the curated shots are published here.)
 
+## Status bar · nav bar · quick settings — before / after
+
+Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
+
+<p align="center">
+<img src="screenshots/comparison/statusbar_before_after.png" width="660"><br>
+<sub>Status bar — SYU gear + clutter gone, volume hidden, transparent, thicker wifi</sub>
+</p>
+<p align="center">
+<img src="screenshots/comparison/navbar_before_after.png" width="660"><br>
+<sub>Nav bar — flat, purple→blue volume slider</sub>
+</p>
+<p align="center">
+<img src="screenshots/comparison/quicksettings_before_after.png" width="760"><br>
+<sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent</sub>
+</p>
+
 ## What's in here
 
 | Area | Doc | Result |
