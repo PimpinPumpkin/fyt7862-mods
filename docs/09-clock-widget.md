@@ -6,16 +6,19 @@ looks like it and adds a **color picker**.
 
 Source: `artifacts/clockwidget/` (package `com.fyt7862.clock`, label **FYT Clock**).
 
-- **Widget** = three stacked elements on a dark rounded **pill** (`@drawable/clock_pill` ≈ `#CC2C2C34`, r54):
-  hour (`hh`, leading‑zero) over minute (`mm`) at **74sp bold**, over date (`EEE, MMM d`, 15sp) — white, sized
-  + spaced to match the 7870 (which is Deskclock `DigitalStackedAppWidget` + Lawnchair's widget‑bg pill). Cell
-  `minHeight=150dp` so it's tall enough. `TextClock` is `@RemoteView`‑safe and self‑updates (no service/alarm).
-  A `PreviewActivity` (launcher entry) renders it in a dark frame for on‑device preview. Color stays selectable
-  (default white) via the config picker. **Gotcha:** use `format12Hour="hh"` (not `h`) to match the 7870's
-  leading zero; resizing an existing instance needs re‑adding the widget (cell size is fixed at placement).
-- **Config activity** launches when you drop the widget; it shows swatches — **white (default, = the 7870),**
-  slider‑blue `#71B5FF`, red, green, amber, purple — and applies the pick with
-  `RemoteViews.setTextColor` (saved per‑widget in `SharedPreferences`).
+- **Widget** = three stacked elements (date `EEE, MMM d` 15sp over hour `hh` over minute `mm`, both **80sp
+  `sans-serif-medium`**) on a tinted, shaped background `ImageView` (id `bg`). Defaults: lavender text
+  `#C8BFFF` on a purple‑gray pill `#312E41` at ~80% opacity (`setColorFilter` + `setImageAlpha`) — a 7870
+  match. `TextClock` is `@RemoteView`‑safe and self‑updates (no service/alarm). **Gotcha:** use
+  `format12Hour="hh"` (not `h`) for the 7870's leading zero; resizing an instance needs re‑adding it.
+- **Background shape** (`shape` pref → `ClockWidget.SHAPES[]`, applied with `RemoteViews.setImageViewResource`
+  *before* the color filter): **Pill** (r54, default), **Rounded** (r26), **Ellipse** (oval), **Rectangle**
+  (r6). Each is a plain white shape drawable tinted by the bg color, so one set covers every color.
+- **Config / `PreviewActivity`** (launcher entry, live preview in a dark frame): text + background **swatches**,
+  an **opacity** slider, the **shape** selector, free‑form **hex entry** (`#RRGGBB`/`#AARRGGBB`), and a
+  **visual HSV color picker** (`ColorPickerView`) with a Text/Background target toggle. Saved per‑widget in
+  `SharedPreferences`; `ClockWidget.updateAll` re‑renders live (force‑stop `app.lawnchair` if a placed
+  instance doesn't refresh).
 
 ## Build (no Gradle)
 
@@ -31,5 +34,6 @@ adb install -r out/clockwidget.apk
 Long‑press the home screen → **Widgets** → **FYT Clock** → drop it → pick a color in the dialog.
 To recolor later, remove + re‑add (or extend the provider with a tap‑to‑configure intent).
 
-> Extending it: add more swatches in `ConfigActivity.colors`, or swap the date format / font in
+> Extending it: add swatches in `PreviewActivity.textColors`/`bgColors`, a new shape in `ClockWidget.SHAPES`
+> (+ a matching `res/drawable/clock_shape_*.xml`), or swap the date format / font in
 > `res/layout/clock_widget.xml`. Rebuild with `./build.sh`.

@@ -21,6 +21,7 @@ public class PreviewActivity extends Activity {
   final int[] bgColors   = {0xFF0E0F13, 0xFF191919, 0xFF2C2C34, 0xFF1A2438, 0xFF4A72B8, 0xFFB69DF8, 0xFF000000, 0xFFFFFFFF};
   ImageView bgView; TextClock h, m, d;
   ColorPickerView picker; boolean pickText = true;
+  Button[] shapeBtns;
 
   int dp(int v){ return (int)(v*getResources().getDisplayMetrics().density + 0.5f); }
   SharedPreferences prefs(){ return ClockWidget.prefs(this); }
@@ -54,6 +55,9 @@ public class PreviewActivity extends Activity {
     root.addView(swatchRow(bgColors, false));
     root.addView(label("Background opacity"));
     root.addView(opacityBar());
+    root.addView(label("Background shape"));
+    root.addView(shapeRow());
+    refreshShapeSel();
     root.addView(label("Text color — hex"));
     root.addView(hexRow(true));
     root.addView(label("Background color — hex"));
@@ -116,6 +120,7 @@ public class PreviewActivity extends Activity {
     int bg = p.getInt("bg", ClockWidget.DEF_BG);
     int a = p.getInt("bga", ClockWidget.DEF_BGA);
     h.setTextColor(t); m.setTextColor(t); d.setTextColor(t);
+    bgView.setImageResource(ClockWidget.SHAPES[ClockWidget.shapeIdx(p)]);
     bgView.setColorFilter(bg, PorterDuff.Mode.SRC_ATOP);
     bgView.setImageAlpha(a);
     ClockWidget.updateAll(this);
@@ -162,6 +167,31 @@ public class PreviewActivity extends Activity {
     bb.setLayoutParams(new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.WRAP_CONTENT,1f));
     row.addView(bt); row.addView(bb);
     return row;
+  }
+
+  LinearLayout shapeRow(){
+    LinearLayout row = new LinearLayout(this);
+    row.setOrientation(LinearLayout.HORIZONTAL);
+    shapeBtns = new Button[ClockWidget.SHAPE_NAMES.length];
+    for (int i=0;i<ClockWidget.SHAPE_NAMES.length;i++){
+      final int idx = i;
+      Button b = new Button(this);
+      b.setText(ClockWidget.SHAPE_NAMES[i]);
+      b.setAllCaps(false); b.setTextSize(12);
+      b.setPadding(dp(2),0,dp(2),0); b.setMinWidth(0); b.setMinimumWidth(0);
+      b.setOnClickListener(new View.OnClickListener(){ public void onClick(View v){
+        prefs().edit().putInt("shape", idx).apply(); apply(); refreshShapeSel();
+      }});
+      b.setLayoutParams(new LinearLayout.LayoutParams(0,ViewGroup.LayoutParams.WRAP_CONTENT,1f));
+      shapeBtns[i] = b; row.addView(b);
+    }
+    return row;
+  }
+
+  void refreshShapeSel(){
+    if (shapeBtns==null) return;
+    int cur = ClockWidget.shapeIdx(prefs());
+    for (int i=0;i<shapeBtns.length;i++) shapeBtns[i].setAlpha(i==cur?1f:0.45f);
   }
 
   Integer parseHex(String s){

@@ -61,3 +61,20 @@ same APK, `apktool b` it (SystemUI's aapt2 does *not* segfault), `unzip` the reb
 platform‑sign. First boot is slower (dex2oat). **Gotcha:** never reparent a code‑referenced child of a
 SYU custom `ViewGroup` (e.g. `com.syu.view.VolLayout`) — it casts the child's LayoutParams to the parent
 type in a lifecycle callback → `ClassCastException` crash‑loop. Add new elements as direct siblings.
+
+## Quick Settings accent (the two blues)
+
+Stock SYU QS uses one hardcoded active blue `#41A4F7` in two places:
+
+- **Brightness slider fill** — a baked PNG (`brightness_progress_drawable_p_default.png`, solid `#41A4F7`)
+  referenced by `brightness_progress_drawable.xml`. **Fixed** by swapping the `<clip android:drawable=…png>`
+  for an inline `<clip><shape><gradient>` = the volume‑slider purple→cyan (`#7176FA → #6CDDFA`, thin r5). Pure
+  resource edit — `artifacts/systemui-qs/brightness_progress_drawable.xml`.
+- **Active tile circle** — *not* cleanly fixable, **deliberately left blue**. The fill is
+  `android.R.attr.colorAccent` (`0x1010435`) resolved against the **framework** `Theme.DeviceDefault.QuickSettings`
+  (the `qs_theme` parent) = `#41A4F7`. Overriding `colorAccent`/`colorControlActivated` in `qs_theme` does **not**
+  reach it. `QSTileBaseView.mColorActive`/`getCircleColor` are **dead code** — the `getCircleColor(state)` call in
+  the state handler has no `move-result`, so the value is discarded; patching that field is a verified no‑op. The
+  circle is painted through a SYU path keyed off the framework accent, so changing it needs a `framework-res`
+  `colorAccent` edit (affects every app, bootloop‑risky). The brightness gradient is the dominant, always‑visible
+  blue — fixing that was the win; the circle only shows on active toggles.
