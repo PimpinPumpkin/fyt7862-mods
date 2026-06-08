@@ -95,3 +95,9 @@ Plus two declutter/finish tweaks:
   `quick_settings_night_display_label` → **Night**, `quick_setting_blackscreen_label` (+`_fyt`) → **Sleep** (the
   tile just kills the screen — audio keeps playing — so "Sleep" fits better than "Off Screen"). The wifi tile
   shows the live SSID (unchanged).
+
+> **Removed tiles — rationale + how to restore.** Dropped **standby** (a head unit is either on or
+> screen‑off — an in‑between standby state isn't useful in a car) and **clean memory** (the app‑switcher's
+> trash icon already does that). To put either back: add `shurtcut:standby` and/or `shurtcut:clean` to
+> `quick_settings_tiles_default` in `strings.xml`, and bump `quick_settings_num_columns` +
+> `quick_qs_panel_max_columns` in `integers.xml` to the new tile count (7 or 8) so they still fill the row.
