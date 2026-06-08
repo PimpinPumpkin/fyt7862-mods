@@ -66,7 +66,7 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 </p>
 <p align="center">
 <img src="screenshots/comparison/quicksettings_before_after.png" width="760"><br>
-<sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent</sub>
+<sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent, and a subtle dark gradient background for further polish.</sub>
 </p>
 
 ## What's in here
