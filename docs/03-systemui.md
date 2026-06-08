@@ -86,7 +86,9 @@ Plus two declutter/finish tweaks:
   gradient `#1C1D26` (top) → `#060608` (bottom) — the same fade as the nav/volume bar — while keeping its alpha
   (rounded shape), so the QS reads like the nav bar instead of a flat slab.
   `artifacts/systemui-qs/quick_settings_background.png`.
-- **Tile declutter** — the QS tile list is a plain string: `quick_settings_tiles_default` in `strings.xml`
-  (`quick_settings_tiles = "default"` selects it). Removed `shurtcut:standby` + `shurtcut:reboot` →
-  `wifi,night,cell,airplane,shurtcut:blackscreen,shurtcut:clean` (6 tiles → fits one state, so the second
-  "full‑pull" page where reboot appeared out of nowhere is gone).
+- **Tile declutter + even spread** — the QS tile list is a plain string: `quick_settings_tiles_default` in
+  `strings.xml` (`quick_settings_tiles = "default"` selects it). Removed `shurtcut:standby` (kept reboot) →
+  `wifi,night,cell,airplane,shurtcut:blackscreen,shurtcut:clean,shurtcut:reboot` (7 tiles). Then dropped
+  `quick_settings_num_columns` 8→7 and `quick_qs_panel_max_columns` 9→7 (`integers.xml`) so the 7 tiles spread
+  evenly across the full width instead of left‑clustering with a right‑side gap — also gives the labels a touch
+  more room.
