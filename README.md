@@ -61,7 +61,7 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 
 <p align="center">
 <img src="screenshots/comparison/statusbar_before_after.png" width="660"><br>
-<sub>Status bar — SYU gear + clutter gone, volume hidden, transparent, thicker wifi</sub>
+<sub>Status bar — current app icon + clutter gone, volume hidden, transparent, thicker wifi</sub>
 </p>
 <p align="center">
 <img src="screenshots/comparison/navbar_before_after.png" width="660"><br>
