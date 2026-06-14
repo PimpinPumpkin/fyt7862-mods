@@ -28,5 +28,6 @@ zipalign -p 4 … ; apksigner sign --key platform.…    # then /fem install + r
 Result: outline HOME/BACK, flat blue volume slider. The slider's blue→cyan gradient
 (`d_car_vol_bar_7870` ≈ `#7176FA → #6CDDFA`) is the source of the project's accent color.
 
-> The orange volume **popup** (tap the status‑bar volume) is a third app, `com.syu.ms` — recolor its
-> seekbar drawable separately if you want it to match. (Not done here.)
+> The orange volume **popup** (steering‑wheel or the status‑bar volume button) is a third app,
+> `com.syu.ms`. Rather than recolor it, we **disabled it** as redundant with this slider —
+> see [11-volume-osd.md](11-volume-osd.md).

@@ -72,6 +72,15 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 <sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent, and a subtle dark gradient background for further polish.</sub>
 </p>
 
+## Volume OSD — removed (redundant)
+
+<p align="center"><img src="screenshots/before/volume_osd.png" width="320"></p>
+
+The stock SYU volume popup (grey box, orange slider) fired on every volume change — steering-wheel or the
+(now hidden) status-bar button — but the nav bar already shows the level live: note the popup **and** the
+nav-bar slider in that shot **both read 15**. Pure redundant clutter, so we disabled it by no-op'ing its
+draw call in `com.syu.ms` ([11-volume-osd.md](docs/11-volume-osd.md)).
+
 ## What's in here
 
 | Area | Doc | Result |
@@ -86,6 +95,7 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 | Applying changes | [08-applying.md](docs/08-applying.md) | The `/fem` in‑place install pipeline |
 | Clock widget | [09-clock-widget.md](docs/09-clock-widget.md) | Custom clock: swatches, hex entry + visual color picker (no Gradle build) |
 | Root vs not | [10-root-vs-not.md](docs/10-root-vs-not.md) | What needs root vs plain adb when applying to other FYTs |
+| Volume OSD | [11-volume-osd.md](docs/11-volume-osd.md) | The redundant orange volume popup (`com.syu.ms`) disabled |
 
 `artifacts/` holds the built APKs, splash images, configs and the root package.
 `scripts/` holds the reusable generators (gradients, icons, the install helper).
