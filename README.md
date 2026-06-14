@@ -69,12 +69,12 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 <sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent, and a subtle dark gradient background for further polish.</sub>
 </p>
 
-## In-call OSD
+## In-call OSD — before / after
 
-The Bluetooth call overlay sits above the nav bar during a call — cropped here from full‑screen shots:
+The Bluetooth in-call overlay sits above the nav bar during a call. Its icons were modernized along with the rest of the skin (glossy/beveled → flat Material) — cropped here from full‑screen shots:
 
-<p align="center"><img src="screenshots/comparison/incall_osd_call.png" width="520"><br><sub>Active call (caller number redacted)</sub></p>
-<p align="center"><img src="screenshots/comparison/incall_osd_mobile.png" width="520"><br><sub>The same overlay on another call</sub></p>
+<p align="center"><img src="screenshots/comparison/incall_osd_before.png" width="520"><br><sub>Before — stock skeuomorphic (glossy, beveled) icons · caller number redacted</sub></p>
+<p align="center"><img src="screenshots/comparison/incall_osd_after.png" width="520"><br><sub>After — flat Material icons</sub></p>
 
 ## Volume OSD — removed (redundant)
 
