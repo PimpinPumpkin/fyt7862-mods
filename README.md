@@ -45,9 +45,6 @@ proven platform that same UI consistency and polish.
 <td align="center"><img src="screenshots/after/settings.png" width="200"><br><sub><b>Settings</b></sub></td>
 <td align="center"><img src="screenshots/after/clock_config.png" width="200"><br><sub><b>Clock widget</b> config</sub></td>
 </tr>
-<tr>
-<td align="center" colspan="4"><img src="screenshots/after/incall_osd.png" width="210"><br><sub><b>In‑call OSD</b> — the Bluetooth call overlay above the nav bar (number redacted)</sub></td>
-</tr>
 </table>
 
 Centered‑clock/left‑wifi status bar, flat nav bar with blue volume slider, and purple themed (Lawnicons) app
@@ -71,6 +68,13 @@ Stock SYU UI vs. the modded result (owner‑recovered "before" shots):
 <img src="screenshots/comparison/quicksettings_before_after.png" width="760"><br>
 <sub>Quick settings — 8→6 tiles, shorter labels, Material glyphs, purple accent, and a subtle dark gradient background for further polish.</sub>
 </p>
+
+## In-call OSD
+
+The Bluetooth call overlay sits above the nav bar during a call — cropped here from full‑screen shots:
+
+<p align="center"><img src="screenshots/comparison/incall_osd_call.png" width="520"><br><sub>Active call (caller number redacted)</sub></p>
+<p align="center"><img src="screenshots/comparison/incall_osd_mobile.png" width="520"><br><sub>The same overlay on another call</sub></p>
 
 ## Volume OSD — removed (redundant)
 
