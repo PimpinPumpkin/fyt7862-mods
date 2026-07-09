@@ -25,13 +25,15 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 ## `before/` — stock SYU (glossy, skeuomorphic)
 | File | What |
 |---|---|
-| `home.png` | **Stock home** — default colorful icons, white stock clock, cluttered stock status bar, default nav bar (owner screenshot, low‑res) |
-| `status_bar.png` | **Stock status bar** — SYU gear icon, visible volume, opaque gray, thin wifi |
-| `navbar.png` | **Stock nav bar** — skeuomorphic HOME/BACK + glossy blue volume slider |
-| `quicksettings.png` | **Stock quick settings** — 8 tiles (incl. Standby / Clean Memory), long labels, scissors glyph |
-| `bt_dialer.png` | Stock BT dialer — glossy round keys, blue gradient "earth" wallpaper |
-| `eq.png` | Stock EQ |
-| `radio.png` | Stock radio |
+| `home.png` | **Stock home**: default colorful icons, white stock clock, cluttered status bar, stock nav bar with the glossy volume slider |
+| `status_bar.png` | **Stock status bar**: SYU gear icon, visible volume, opaque gray, thin wifi |
+| `navbar.png` | **Stock nav bar**: skeuomorphic HOME/BACK plus the glossy blue volume slider |
+| `quicksettings.png` | **Stock quick settings**: 8 tiles (incl. Standby / Clean Memory), long labels, scissors glyph |
+| `bt_dialer.png` | Stock BT dialer: glossy round keys, blue "earth" wallpaper (unit MAC blurred) |
+| `settings.png` | Stock FYT settings: carbon-fiber skeuomorphic list |
+| `steering.png` | Stock steering-wheel control page: galaxy wallpaper, glossy translucent keys |
+| `eq.png` | Stock 16-band graphic EQ, blue gradient |
+| `radio.png` | Stock FM radio: glossy "earth" wallpaper, gradient presets |
 | `boot_logo.png` | Stock boot logo |
 
 ## `comparison/`
@@ -44,10 +46,12 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 | `bt_before_after.png` | Stock ⟶ modded BT dialer |
 | `eq_before_after.png` | Stock ⟶ modded EQ |
 | `radio_before_after.png` | Stock ⟶ modded radio |
+| `settings_before_after.png` | Stock ⟶ modded settings |
+| `steering_before_after.png` | Stock ⟶ modded steering-wheel page |
 | `icons_vs_7870.png` | Lawnicons matched to the 7870 (top = 7870, bottom = 7862) |
 | `wifi_vs_7870.png` | WiFi icon matched to the 7870 (top = 7862, bottom = 7870) |
 
-> Note: BT / EQ / radio have clean stock "before" captures (saved during the reskin), and the **stock home,
-> status bar, nav bar, and quick settings** were recovered from owner screenshots (some low‑res / phone‑shared).
-> A stock Settings "before" shot wasn't preserved — the `comparison/*_vs_7870` shots stand in as the design
-> target there.
+> Note: every `before/` shot is now a native 768x1024 framebuffer capture (`adb exec-out screencap`)
+> pulled from a second, still-stock, identical UIS7862 unit, so the stock state is pixel-clean rather
+> than a low-res phone photo. The only edits are privacy blurs: the WiFi SSID on the quick-settings tile
+> and the head unit's own BT MAC on the dialer. The `before_after` composites were regenerated from these.
