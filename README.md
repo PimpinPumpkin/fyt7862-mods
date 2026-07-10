@@ -102,6 +102,7 @@ draw call in `com.syu.ms` ([11-volume-osd.md](docs/11-volume-osd.md)).
 | Volume OSD | [11-volume-osd.md](docs/11-volume-osd.md) | The redundant orange volume popup (`com.syu.ms`) disabled |
 | Newer builds / 2nd units | [12-newer-builds-and-second-units.md](docs/12-newer-builds-and-second-units.md) | Root the build that is already on the unit (kernel check), USB ports + Device toggle, Magisk 30.7, killing FMC. **You usually do NOT need to flash MD firmware.** |
 | Audio noise fix | [13-audio-noise-fix.md](docs/13-audio-noise-fix.md) | Ground loop isolator + USB TOSLINK DAC (HiFime S2) to kill alternator whine |
+| Manual finishing | [14-manual-finishing-checklist.md](docs/14-manual-finishing-checklist.md) | The on-screen leftovers: **change the BT name**, add the clock widget, per-app icons (Car Link = search "android") |
 
 `subaru-splash/` holds both Subaru boot images (u-boot logo + bootanimation) with a README of what each is.
 `artifacts/` holds the built APKs, splash images, configs and the root package.
