@@ -112,3 +112,11 @@ dark mode**. Toggling Lawnchair's Themed Icons while night is off does nothing. 
 2. Lawnchair -> Settings -> General -> **Themed Icons -> Home screen**,
 3. clear the icon cache so it re-renders: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"`
    then restart Lawnchair.
+
+**Gotcha - a Lawnchair restart does NOT re-render cached icons.** Lawnchair caches rendered icons in
+`app_icons.db`, so after you change *any* icon setting (themed icons on/off, tinted-accent color off, icon
+pack) the already-cached icons keep their old look while only newly-rendered ones update - that is why the
+custom-icon picker shows the right (purple) icon but the auto-applied ones (Aurora, Droidify, etc.) stay
+stuck (blue). Fix is always the same: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"` then
+force-stop + reopen Lawnchair. Note: keep **"use tinted accent color" OFF** - on this A10 unit the accent
+tint is blue-ish, which overrides the pack's purple; off lets the Lawnicons `-night` purple show.
