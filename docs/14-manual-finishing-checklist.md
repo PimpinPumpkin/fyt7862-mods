@@ -18,6 +18,14 @@ account/name fields). Run through this after a fresh clone.
       (Widget bindings do not survive the Lawnchair reinstall, so this is always by hand.)
 - [ ] **Arrange the home icons** how you want them. The restored layout only brings over apps that are
       actually installed on this unit, so expect gaps.
+- [ ] **Set the quiet BT incoming-call chime.** The stock tone is loud over music. This is NOT part of the
+      BT reskin APK - it is a separate file the BT app plays from `/sdcard/.btring/ring.mp3`
+      (`Page_PopBtRing`, `STREAM_RING`; see [06-app-reskins.md](06-app-reskins.md)). Apply it:
+      ```
+      adb push artifacts/bt_incoming_chime.mp3 /sdcard/.btring/ring.mp3
+      ```
+      (create `/sdcard/.btring/` first if missing). Then open the **Bluetooth app -> ring picker** and
+      select it so the app saves `name_ring` to that file. Persists across reboots.
 
 ## Icons (Lawnchair per-app custom icon)
 
