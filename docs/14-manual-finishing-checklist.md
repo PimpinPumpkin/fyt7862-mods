@@ -8,7 +8,12 @@ account/name fields). Run through this after a fresh clone.
 
 - [ ] **Change the Bluetooth name.** Stock ships as `LEHX-L6Pro`. Bluetooth app -> gear/BT Set tab ->
       **Device Name** -> set your own. (Do this per unit so two units in the same car/phone list are not
-      both "LEHX-L6Pro".)
+      both "LEHX-L6Pro".) The BT name is stored separately (`settings get secure bluetooth_name`) and is
+      NOT changed by the device name below.
+- [ ] **Change the Android device name** (shown for USB / cast / Nearby, defaults to `ums512_1h10_Natv`).
+      This is separate from the Bluetooth name. Set it with root adb:
+      `adb shell settings put global device_name Outback`
+      (or Settings -> About device -> Device name). "Outback" is the one used on this car.
 - [ ] **Add the clock widget.** Long-press the home -> Widgets -> **FYT Clock** -> drop it, pick a color.
       (Widget bindings do not survive the Lawnchair reinstall, so this is always by hand.)
 - [ ] **Arrange the home icons** how you want them. The restored layout only brings over apps that are
