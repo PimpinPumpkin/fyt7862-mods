@@ -83,3 +83,32 @@ instead). Once you are rooted it is just noise. Disable it:
 ```
 adb shell su -c "pm disable-user --user 0 com.mariodantas.fytmanagementcenter"
 ```
+
+## Dark mode (and why it makes the purple Lawnicons appear)
+
+FYT **locks** Android's night mode off (`dumpsys uimode` -> `mNightModeLocked=true`), so "follow system"
+apps stay light and the themed icons do not go purple. Root overrides the lock:
+
+```
+adb shell su -c "cmd uimode night yes"     # mCurUiMode -> 0x21, dark
+```
+
+FYT re-locks it at every boot, so **persist it** with a Magisk service script
+`/data/adb/service.d/darkmode.sh` (root, `chmod 0755`):
+
+```sh
+#!/system/bin/sh
+while [ "$(getprop sys.boot_completed)" != "1" ]; do sleep 2; done
+sleep 6
+cmd uimode night yes
+```
+
+**This is also what makes the purple Lawnicons show up.** The purple is NOT Material You (this is A10, it
+has none). The `lawnicons-purple` pack's `color/primaryForeground` is **night-qualified** - black in light
+mode, `#ffc8bfff` (light purple) in `-night`. So the themed icons only render purple **once the unit is in
+dark mode**. Toggling Lawnchair's Themed Icons while night is off does nothing. Order of operations:
+
+1. force dark mode (above),
+2. Lawnchair -> Settings -> General -> **Themed Icons -> Home screen**,
+3. clear the icon cache so it re-renders: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"`
+   then restart Lawnchair.
