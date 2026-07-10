@@ -22,6 +22,11 @@ is **refused with nothing written** (fails safe).
 - ADB to the unit (see [00-overview.md](00-overview.md) for the USB‑A↔A + Device‑role + reboot dance).
 - The **Magisk app** installed on the unit (the Manager; e.g. v27+).
 - A **FAT32** USB stick, cleanly formatted + safe‑ejected (bad sticks throw red‑error sig fails).
+  **Use a small stick.** A **16 GB** FAT32 drive is the sweet spot and flashed reliably. A large
+  **128 GB** drive was *not* picked up by the updater (likely the size / cluster layout). If the flash
+  never starts, swap to the smallest stick you have before touching anything else. This whole method is
+  USB‑stick only: the updater reads the package off the drive at boot, so **no PC / download mode is
+  needed** to flash.
 - The boot‑only OTA package: `artifacts/root/6315_1.zip` (+ the build scripts in `artifacts/root/`).
 
 > The bundled `6315_1.zip` embeds a Magisk‑patched boot for **this exact build**
@@ -57,8 +62,10 @@ cd artifacts/root && python3 build_bootonly.py    # embeds magisk_patched.img �
 
 1. Copy to the **FAT32 stick root**: `6315_1.zip`, `lsec6315update`, the `lsec_updatesh/` helpers,
    and `config.txt` (see [config](../artifacts/config/)). Safe‑eject.
-2. Insert the stick into a **HOST‑mode USB port** and **reboot the unit**.
-   The updater scans for `6315_1.zip` *at boot* — it does **not** fire on hot‑insert into a running system.
+2. Insert the stick into a USB port and **reboot the unit**. The port is **flexible**: any of the unit's
+   normal USB host ports work for reading the update (this is *not* the picky Device‑role port that adb
+   needs, so use whichever is easiest to reach). The updater scans for `6315_1.zip` *at boot*, it does
+   **not** fire on hot‑insert into a running system.
 3. Wait for the green "success", give it +5s, remove the stick, reboot.
 
 ## D. Verify + lock in
