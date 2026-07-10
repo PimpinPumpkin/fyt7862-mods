@@ -31,6 +31,24 @@ that is not obvious:
 - **Car Link** - there is no "car link" icon. **Search `android`** and pick the (Android Auto) logo that
   comes up.
 
+## Ignore updates for the modded launcher apps
+
+The patched **Lawnchair** and the recolored **Lawnicons** are both re-signed with the **Android Debug key**
+(`CN=Android Debug`, SHA-256 `24467432e91370be2bcba5a3e07650fa0bec1b6158708403f9adc4db9e5fc452`), which
+is a different signature from the official releases. So an official update **cannot** install over them - it
+fails with `INSTALL_FAILED_UPDATE_INCOMPATIBLE`. You are protected from a silent overwrite.
+
+Still, in whatever store tracks them (**Droid-ify** if you added the Lawnchair/Lawnicons repos; Obtainium if
+you added them there) set **"Ignore all updates"** on both. Not because an update would succeed, but to stop
+the repeated failed-update nagging AND - the real risk - to avoid an updater's "the update failed, uninstall
+and reinstall?" prompt, which would wipe the modded Lawnchair and all its layout/config. Aurora / Play do
+not track these (not Play apps, and the sig would not match anyway).
+
+## Apps that work well on this unit
+
+- **Calculator: Unitto** (F-Droid). Installed and works with no UI glitches on this 768x1024 A10 panel
+  (the stock `com.android.calculator2` is hidden). Use this instead of hunting for a calculator.
+
 ## Optional
 
 - [ ] **Themed Icons** should read "Home screen" (Lawnchair -> Settings -> General -> Themed Icons). It is
