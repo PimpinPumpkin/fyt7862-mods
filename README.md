@@ -100,7 +100,10 @@ draw call in `com.syu.ms` ([11-volume-osd.md](docs/11-volume-osd.md)).
 | Clock widget | [09-clock-widget.md](docs/09-clock-widget.md) | Custom clock: swatches, hex entry + visual color picker (no Gradle build) |
 | Root vs not | [10-root-vs-not.md](docs/10-root-vs-not.md) | What needs root vs plain adb when applying to other FYTs |
 | Volume OSD | [11-volume-osd.md](docs/11-volume-osd.md) | The redundant orange volume popup (`com.syu.ms`) disabled |
+| Newer builds / 2nd units | [12-newer-builds-and-second-units.md](docs/12-newer-builds-and-second-units.md) | Root the build that is already on the unit (kernel check), USB ports + Device toggle, Magisk 30.7, killing FMC. **You usually do NOT need to flash MD firmware.** |
+| Audio noise fix | [13-audio-noise-fix.md](docs/13-audio-noise-fix.md) | Ground loop isolator + USB TOSLINK DAC (HiFime S2) to kill alternator whine |
 
+`subaru-splash/` holds both Subaru boot images (u-boot logo + bootanimation) with a README of what each is.
 `artifacts/` holds the built APKs, splash images, configs and the root package.
 `scripts/` holds the reusable generators (gradients, icons, the install helper).
 `screenshots/` holds before/after captures and 7870 comparisons — see [screenshots/](screenshots/).
