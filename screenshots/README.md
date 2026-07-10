@@ -31,7 +31,8 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 | `quicksettings.png` | **Stock quick settings**: 8 tiles (incl. Standby / Clean Memory), long labels, scissors glyph |
 | `bt_dialer.png` | Stock BT dialer: glossy round keys, blue "earth" wallpaper (unit MAC blurred) |
 | `bt_app_stock.png` | **Whole stock Bluetooth app** (`com.syu.bt`): all 6 tabs (dialer, contacts, call log, BT music, pairing, BT settings) in one grid |
-| `settings_app_stock.png` | **Whole stock FYT Settings app** (`com.syu.settings`): main list, About device, date & time |
+| `settings_app_stock.png` | **Whole stock FYT Settings app** (`com.syu.settings`): all six tabs (Network, Device, Car/driving, System, Personal, Factory PIN) |
+| `settings_about.png` | Stock **About device** page: UIS7862(S), 8 GB / 128 GB, MCU / Bluetooth / baseband versions, build `QP1A.190711.020` |
 | `settings.png` | Stock FYT settings: carbon-fiber skeuomorphic list |
 | `steering.png` | Stock steering-wheel control page: galaxy wallpaper, glossy translucent keys |
 | `eq.png` | Stock 16-band graphic EQ, blue gradient |
