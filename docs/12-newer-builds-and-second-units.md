@@ -113,10 +113,17 @@ dark mode**. Toggling Lawnchair's Themed Icons while night is off does nothing. 
 3. clear the icon cache so it re-renders: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"`
    then restart Lawnchair.
 
+**To get purple on the AUTO-matched apps, turn Themed Icons OFF (not on).** This is the counter-intuitive
+part. With **Themed Icons ON**, Lawnchair draws apps that have a Lawnicons match as the monochrome layer
+tinted with the **blue system accent** (measured glyph `~(140,151,198)`, green channel > red = blue). With
+**Themed Icons OFF** (Settings -> General -> Themed Icons -> Off) and Icon Pack = Lawnicons, those same apps
+fall back to the pack's own **purple** adaptive icon (`~(145,138,186)`, red > green = purple), which is
+identical to what the custom-icon picker gives. So: **Icon Pack = Lawnicons, Themed Icons = OFF, "use
+tinted accent color" = OFF.** Apps not in Lawnicons then show their normal icon unless you custom-set one.
+
 **Gotcha - a Lawnchair restart does NOT re-render cached icons.** Lawnchair caches rendered icons in
-`app_icons.db`, so after you change *any* icon setting (themed icons on/off, tinted-accent color off, icon
-pack) the already-cached icons keep their old look while only newly-rendered ones update - that is why the
-custom-icon picker shows the right (purple) icon but the auto-applied ones (Aurora, Droidify, etc.) stay
-stuck (blue). Fix is always the same: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"` then
-force-stop + reopen Lawnchair. Note: keep **"use tinted accent color" OFF** - on this A10 unit the accent
-tint is blue-ish, which overrides the pack's purple; off lets the Lawnicons `-night` purple show.
+`app_icons.db`, so after you change any icon setting (themed on/off, tinted-accent, pack) the already-cached
+icons keep their old look and only newly-rendered ones update - which is why the custom-icon picker shows
+the right (purple) icon but the auto-applied ones stayed stuck (blue) even after toggling Themed Icons off.
+Always finish with: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"` then force-stop + reopen
+Lawnchair.
