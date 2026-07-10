@@ -1,15 +1,15 @@
-# 11 — Hiding the volume OSD (com.syu.ms)
+# 11 - Hiding the volume OSD (com.syu.ms)
 
-The grey box with the **orange slider** that pops up on every volume change — from the steering‑wheel
-buttons or the (now hidden) status‑bar volume button — is drawn by **`com.syu.ms`** (the MCU‑bridge
+The grey box with the **orange slider** that pops up on every volume change (from the steering‑wheel
+buttons or the now-hidden status‑bar volume button) is drawn by **`com.syu.ms`** (the MCU‑bridge
 service; uid `system`, AOSP‑platform‑signed). It's pure clutter: the nav bar already shows the level live.
 
 <p align="center"><img src="../screenshots/before/volume_osd.png" width="340"></p>
 
-> The popup reads **15** — identical to the nav‑bar slider at the bottom of the *same* frame. The bar **is**
+> The popup reads **15**, identical to the nav‑bar slider at the bottom of the *same* frame. The bar **is**
 > the volume indicator, so the popup adds nothing. We disabled it rather than recoloring it.
 
-The level readout you keep (`vol_text`) is a **separate** thing — drawn in `com.android.systemui` next to
+The level readout you keep (`vol_text`) is a **separate** thing, drawn in `com.android.systemui` next to
 `com.syu.air`'s NavigationBar (logcat tag `hzqvol`). Killing the popup doesn't touch it.
 
 ## Finding the draw path
@@ -29,7 +29,7 @@ that logs "to show vol window" and calls `La/e;->b(Object)` (the real `addRootVi
 
 ## The fix: no‑op the runnable
 
-One smali edit — an early `return-void` at the top of `ui/a$a.run()`, so the popup is never built:
+One smali edit, an early `return-void` at the top of `ui/a$a.run()`, so the popup is never built:
 
 ```smali
 .method public run()V
@@ -42,7 +42,7 @@ One smali edit — an early `return-void` at the top of `ui/a$a.run()`, so the p
 ```
 
 Full decode → edit smali → `apktool b` → `zipalign -p 4` → sign with the **platform key**. `com.syu.ms` is
-a normal package (uid system, but package‑installed, *not* in `/oem`), so it updates the easy way — no
+a normal package (uid system, but package‑installed, *not* in `/oem`), so it updates the easy way: no
 `/fem` dance, no reboot (the service restarts itself):
 
 ```bash
@@ -63,11 +63,11 @@ After the fix those two lines are gone and a screencap shows only the nav‑bar 
 
 ## Gotchas that cost builds
 
-- **`isEnableVolBar()` is `true`** here (prop `ro.syu.enableVolBar`), so `show()` takes the `e()` branch —
+- **`isEnableVolBar()` is `true`** here (prop `ro.syu.enableVolBar`), so `show()` takes the `e()` branch,
   **not** the `Lx0/h;->T(1)` command‑dispatch (cmd `0x19`) branch. Don't chase `T(1)`.
 - **The active variant is `ui/a`.** Don't no‑op `ui/b$a.e()` or the inactive variants `ui/d` (`ui/vol/cnc`)
-  / `ui/e` (`ui/vol/hog_htop`) — they aren't what draws on this unit.
-- **Don't no‑op `La/e;->b`.** It's the shared overlay window‑manager used by ~15 classes — killing it kills
+  / `ui/e` (`ui/vol/hog_htop`); they aren't what draws on this unit.
+- **Don't no‑op `La/e;->b`.** It's the shared overlay window‑manager used by ~15 classes; killing it kills
   *every* overlay. No‑op the per‑OSD runnable instead.
 - Editing the `ui/vol/*` skin assets does nothing (they feed the inactive variants).
 

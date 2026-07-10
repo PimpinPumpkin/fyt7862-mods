@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Recolor the SYU Quick-Settings ACTIVE-tile icons from the stock #41A4F7 blue
-# to the theme accent. The active QS tiles are NOT tinted at runtime — SYU bakes
+# to the theme accent. The active QS tiles are NOT tinted at runtime; SYU bakes
 # the blue into per-tile "_p" / "_lsec" PNGs (icon_p_save, shown with no color
 # filter for the active state). So this is a pure resource edit: no smali, no
 # framework, no bootloop.
@@ -13,7 +13,7 @@
 import glob, os
 from PIL import Image
 
-TARGET = (0x71, 0x76, 0xFA)   # #7176FA — volume-slider purple. Change to taste.
+TARGET = (0x71, 0x76, 0xFA)   # #7176FA, volume-slider purple. Change to taste.
 
 def is_active(n):
     n = n.lower()

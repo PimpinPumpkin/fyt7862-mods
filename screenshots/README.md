@@ -2,27 +2,27 @@
 
 Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 
-- **`after/`** — current state, how the unit looks now (the README gallery pulls from here).
-- **`before/`** — stock SYU (glossy, skeuomorphic), where captures were preserved.
-- **`comparison/`** — stock ⟶ modded, and 7862‑vs‑7870 target comparisons.
-- The full raw build‑process archive (~158 device captures) is kept in a separate **private** research repo — it
+- **`after/`**: current state, how the unit looks now (the README gallery pulls from here).
+- **`before/`**: stock SYU (glossy, skeuomorphic), where captures were preserved.
+- **`comparison/`**: stock ⟶ modded, and 7862‑vs‑7870 target comparisons.
+- The full raw build‑process archive (~158 device captures) is kept in a separate **private** research repo; it
   contains incidental on‑screen PII (WiFi SSID, a dialed phone number), so it's not published here.
 
-## `after/` — modded, current (flat, dark, 7870‑style)
+## `after/`: modded, current (flat, dark, 7870‑style)
 | File | What |
 |---|---|
 | `home.png` | Lawnchair home: custom clock widget + purple themed (Lawnicons) icons |
-| `quicksettings_quick.png` | Quick settings — quick pull (tile row: WiFi/Night/Data/Flight/Sleep/Reboot) |
-| `quicksettings.png` | Quick settings — expanded: header w/ Material glyphs, 6 tiles, purple→cyan brightness |
+| `quicksettings_quick.png` | Quick settings, quick pull (tile row: WiFi/Night/Data/Flight/Sleep/Reboot) |
+| `quicksettings.png` | Quick settings, expanded: header w/ Material glyphs, 6 tiles, purple→cyan brightness |
 | `radio.png` | Reskinned FM radio (flat presets, dark) |
 | `bt_dialer.png` | Flat square Bluetooth dialer keypad |
 | `eq.png` | Dark‑gradient graphic equalizer |
 | `settings.png` | Flattened SYU Settings |
-| `clock_config.png` | Clock widget config — swatches, hex entry, **visual color picker** |
-| `incall_osd.png` | **In‑call OSD** — Bluetooth call overlay (talk timer + hangup); phone number redacted |
+| `clock_config.png` | Clock widget config: swatches, hex entry, **visual color picker** |
+| `incall_osd.png` | **In‑call OSD**: Bluetooth call overlay (talk timer + hangup); phone number redacted |
 | `steering.png` | Flat steering‑wheel control page |
 
-## `before/` — stock SYU (glossy, skeuomorphic)
+## `before/`: stock SYU (glossy, skeuomorphic)
 | File | What |
 |---|---|
 | `home.png` | **Stock home**: default colorful icons, white stock clock, cluttered status bar, stock nav bar with the glossy volume slider |
@@ -42,7 +42,7 @@ Visual record of the de‑skeuomorphizing / 7870‑clone work on the UIS7862.
 ## `comparison/`
 | File | What |
 |---|---|
-| `home_before_after.png` | **Stock ⟶ modded home** — the headline transformation |
+| `home_before_after.png` | **Stock ⟶ modded home**, the headline transformation |
 | `statusbar_before_after.png` | Stock ⟶ modded status bar |
 | `navbar_before_after.png` | Stock ⟶ modded nav bar |
 | `quicksettings_before_after.png` | Stock ⟶ modded quick settings |

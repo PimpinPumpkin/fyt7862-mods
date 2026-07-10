@@ -1,6 +1,6 @@
-# 07 — The FYT/lsec skin system (and the no‑decrypt override)
+# 07 - The FYT/lsec skin system (and the no‑decrypt override)
 
-Some SYU apps (the **Bluetooth dialer** is the clear case) don't draw their UI from app resources —
+Some SYU apps (the **Bluetooth dialer** is the clear case) don't draw their UI from app resources;
 they load it from an **external, AES‑encrypted skin pack**. Understanding this is the difference between
 "can't touch the brushed‑metal bar" and "flatten any of it in one rebuild."
 
@@ -25,7 +25,7 @@ You don't need to. `getDrawableFromPath` resolves a name in this order:
 2. only if that returns 0 → the encrypted skin zip
 ```
 
-So **add a drawable with the exact skin name to the app's own `res/` and rebuild** — `getIdentifier`
+So **add a drawable with the exact skin name to the app's own `res/` and rebuild**: `getIdentifier`
 finds it, returns it, and the skin zip is never consulted for that name. No decryption, ever.
 
 ```bash
@@ -41,14 +41,14 @@ skin assets, drop them in `res/`, rebuild.
 
 ## Finding the names
 
-`unzip -l res_<x>.ogg` lists every entry's **name** — the central directory isn't encrypted even though
+`unzip -l res_<x>.ogg` lists every entry's **name**; the central directory isn't encrypted even though
 the entries are. Match names to on‑screen elements (e.g. `bt_menu_history` = the call‑log tab) and
 override the ones you want.
 
 ## When an app does NOT use a skin pack
 
-The **FM radio** (`com.syu.radio`) has no `assets/core_ogg/` — its drawables are in the APK, so you edit
+The **FM radio** (`com.syu.radio`) has no `assets/core_ogg/`; its drawables are in the APK, so you edit
 them directly (recolor/replace `radio_ch`, `radio_menu_bk`, etc.) and rebuild. Same end result, simpler.
 (Editing the app's own `radio_bk` worked precisely because app‑res beats any skin lookup.)
 
-> Low‑risk: overriding a name that isn't actually used simply has no effect — it can't break the app.
+> Low‑risk: overriding a name that isn't actually used just has no effect. It can't break the app.

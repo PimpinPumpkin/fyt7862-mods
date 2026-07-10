@@ -58,9 +58,9 @@ public class PreviewActivity extends Activity {
     root.addView(label("Background shape"));
     root.addView(shapeRow());
     refreshShapeSel();
-    root.addView(label("Text color — hex"));
+    root.addView(label("Text color (hex)"));
     root.addView(hexRow(true));
-    root.addView(label("Background color — hex"));
+    root.addView(label("Background color (hex)"));
     root.addView(hexRow(false));
     root.addView(label("Color picker"));
     picker = new ColorPickerView(this);

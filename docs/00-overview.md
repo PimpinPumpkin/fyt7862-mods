@@ -1,4 +1,4 @@
-# 00 — Overview, connection & ground rules
+# 00 - Overview, connection & ground rules
 
 ## Connecting ADB
 
@@ -31,5 +31,5 @@ USB is flaky on these. The reliable path:
 
 `adb`, **apktool 3.x**, Android **build‑tools 35** (`apksigner`/`zipalign`/`aapt2`), Java 17, `openssl`,
 `ffmpeg` (recolors), **`rsvg-convert`** (`brew install librsvg`, for icons), Python 3 stdlib
-(raw‑PNG generation — no PIL on macOS). Get the platform + testkey signing keys with `scripts/fetch_keys.sh` — they're public AOSP keys, **not**
+(raw‑PNG generation, since there's no PIL on macOS). Get the platform + testkey signing keys with `scripts/fetch_keys.sh`. They're public AOSP keys, **not**
 committed to this repo.

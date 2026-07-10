@@ -1,4 +1,4 @@
-# 02 — Boot splash & wallpaper
+# 02 - Boot splash & wallpaper
 
 Three boot screens; you usually only care about the first two.
 
@@ -14,13 +14,13 @@ Three boot screens; you usually only care about the first two.
 
 ## 2. bootanimation (the one you actually watch)
 
-- File: **`/oem/media/bootanimation.zip`** — a **STORED** (uncompressed) zip,
+- File: **`/oem/media/bootanimation.zip`**, a **STORED** (uncompressed) zip,
   `desc.txt` = `768 1024 30` + `p 0 0 part0` and `part0/0000.png` (single frame here).
 - Swap it via `/fem` (no re‑sign needed). Backup: `artifacts/splash/bootanimation_current.zip`.
 
 ## 3. fbootlogo
 
-- Partition `mmcblk0p13`, 1024×600 "Powered by android". **Never displayed on this unit — leave it.**
+- Partition `mmcblk0p13`, 1024×600 "Powered by android". **Never displayed on this unit; leave it.**
 
 ## Wallpaper (as root)
 

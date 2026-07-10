@@ -1,13 +1,13 @@
-# 09 — Clock widget (custom, color‑selectable)
+# 09 - Clock widget (custom, color‑selectable)
 
-The 7870's home clock is **Google Deskclock's `DigitalStackedAppWidget`** (`com.google.android.deskclock`)
-— a stacked digital time/date, but **white only, no color choice**. This is a tiny custom replacement that
+The 7870's home clock is **Google Deskclock's `DigitalStackedAppWidget`** (`com.google.android.deskclock`),
+a stacked digital time/date, but **white only, no color choice**. This is a tiny custom replacement that
 looks like it and adds a **color picker**.
 
 Source: `artifacts/clockwidget/` (package `com.fyt7862.clock`, label **FYT Clock**).
 
 - **Widget** = 7870 layout: date (`EEE, MMM d`, 15sp) over hour `hh` over minute `mm` (both **80sp
-  `sans-serif-medium`**), all stacked **inside** the tinted, shaped background `ImageView` (id `bg`) — the
+  `sans-serif-medium`**), all stacked **inside** the tinted, shaped background `ImageView` (id `bg`); the
   capsule expands upward to include the date, exactly like the 7870 (the date is *not* floating outside). The
   bg `ImageView` is aligned to the full content via `layout_align{Top,Bottom,Left,Right}`, so the shape always
   wraps everything. Defaults: lavender text `#C8BFFF` on a purple‑gray `#312E41` at ~80% opacity

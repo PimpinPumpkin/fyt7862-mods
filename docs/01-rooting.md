@@ -1,4 +1,4 @@
-# 01 — Rooting (locked bootloader, no PC)
+# 01 - Rooting (locked bootloader, no PC)
 
 The UIS7862 ships with a **locked bootloader** (`ro.boot.flash.locked=1`,
 `ro.boot.verifiedbootstate=green`). You can't `fastboot flash`. But you don't need to.
@@ -7,15 +7,15 @@ The UIS7862 ships with a **locked bootloader** (`ro.boot.flash.locked=1`,
 
 FYT's updater `lsec6315update` is a repackaged **AOSP recovery `updater`**: it whole‑file‑verifies an
 OTA's signature against the keys the device trusts, and **these units trust the public AOSP testkey.**
-So a testkey‑signed OTA that flashes *only* a Magisk‑patched `boot.img` is accepted — it never touches
+So a testkey‑signed OTA that flashes *only* a Magisk‑patched `boot.img` is accepted: it never touches
 the bootloader, TZ, or verified partitions, so AVB stays happy. A bad signature or a too‑old timestamp
 is **refused with nothing written** (fails safe).
 
 > **Why not just flash Mario Dantas' MD‑EDITION kernel?** The usual FYT root path is to flash his
 > Magisk‑EDITION (MD‑EDITION) kernel and then enable root by **registering in the FYT app**. *At the time
-> of writing, that registration / root‑enable step is broken* — the kernel flashes fine but root is never
+> of writing, that registration / root‑enable step is broken*: the kernel flashes fine but root is never
 > granted afterward. So this kit takes the self‑contained route instead: a testkey‑signed **boot‑only OTA
-> that flashes a Magisk‑patched boot directly** — no kernel swap, no FYT‑app registration.
+> that flashes a Magisk‑patched boot directly**. No kernel swap, no FYT‑app registration.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ is **refused with nothing written** (fails safe).
 
 > The bundled `6315_1.zip` embeds a Magisk‑patched boot for **this exact build**
 > (`QP1A.190711.020`). If your unit reports a different `ro.build.fingerprint`, **rebuild** the
-> package against *your* boot (steps below) — flashing a foreign boot can bootloop.
+> package against *your* boot (steps below); flashing a foreign boot can bootloop.
 
 ## A. Patch the boot image (only if rebuilding)
 
@@ -82,7 +82,7 @@ adb shell su -c id          # → uid=0 ... u:r:magisk:s0
 If the patched boot bootloops: rebuild `6315_1.zip` with the **stock** `boot.img` and reflash, or flash a
 full variant‑matched (`768×1024 / normal7862 / 6315`) firmware. Because only `boot` was touched, this is
 low‑risk. (A slot‑switch AVB brick from mixing an old rooted boot with a newer build is recoverable
-natively via `spd_dump set_active` on macOS — see the FYT 7870 recovery notes.)
+natively via `spd_dump set_active` on macOS, see the FYT 7870 recovery notes.)
 
 ## References
 

@@ -1,6 +1,6 @@
-# 08 — Applying changes (the `/fem` install pipeline)
+# 08 - Applying changes (the `/fem` install pipeline)
 
-All the reskinned apps live in `/oem/app/<NNNN>_<pkg>/`. **`/oem` is a read‑only view of `mmcblk0p42`** —
+All the reskinned apps live in `/oem/app/<NNNN>_<pkg>/`. **`/oem` is a read‑only view of `mmcblk0p42`**;
 write through its read‑write alias **`/fem`**. Resource changes only show after a **full reboot**
 (a process kill reuses cached resources).
 
@@ -41,14 +41,14 @@ adb reboot
 
 - **adb+su quoting.** `adb shell su -c '<multiline>'` silently runs the body as **uid 2000**, not root
   (and a plain `su -c id` still elevates, masking it). Always use the **blob form**:
-  `adb shell 'su -c "cmd; cmd"'` — whole device command single‑quoted to adb, inner double‑quoted to su.
+  `adb shell 'su -c "cmd; cmd"'`, whole device command single‑quoted to adb, inner double‑quoted to su.
 - **uid changes on reinstall** (user apps only). If you ever `uninstall`/`install` a *user* app (e.g. the
   patched Lawnchair) instead of `cat`‑replacing in place, restore its data with
   `chown -R <NEW-uid>` + `restorecon -R` (the uid is reassigned) and re‑set the home activity.
 - **SystemUI / priv‑app** (`/system` or `/odm` priv‑app, e.g. `SystemUI.apk`) installs the same way but to
   the priv‑app path; keep a stock backup to restore if the UI breaks.
-- **aapt2 segfault** on huge SYU resource tables (e.g. `com.syu.air`, 266 layouts): don't recompile —
-  swap the *compiled* binary XML/PNG at the zip level, or do smali‑only edits via dex‑swap. See
+- **aapt2 segfault** on huge SYU resource tables (e.g. `com.syu.air`, 266 layouts): don't recompile.
+  Swap the *compiled* binary XML/PNG at the zip level, or do smali‑only edits via dex‑swap. See
   [03-systemui.md](03-systemui.md) / [06-app-reskins.md](06-app-reskins.md).
 
 ## Which apps go where

@@ -1,6 +1,6 @@
-# 04 — Nav bar (com.syu.air)
+# 04 - Nav bar (com.syu.air)
 
-The bottom **HOME / volume‑slider / BACK bar is `com.syu.air`, NOT SystemUI** — confirm with
+The bottom **HOME / volume‑slider / BACK bar is `com.syu.air`, NOT SystemUI**; confirm with
 `dumpsys window windows` (the `NavigationBar` window's `mPackageName=com.syu.air`, uid 1000). Any SystemUI
 nav edits are inert. App: `/oem/app/190000000_com.syu.air/…apk`, platform‑signed.
 
@@ -12,9 +12,9 @@ platform=6315, `!IsNewPlatform`) it falls to the else branch → **`car_air_null
 tiny orange volume bar). The app **already contains the 7870 bar**: **`car_air_null_7870.xml`** (outline
 `d_header_home_7870`/`d_header_back_7870`, flat, blue slider `d_car_vol_bar_7870`).
 
-## Apply it (binary‑XML blob swap — `apktool b` segfaults here)
+## Apply it (binary‑XML blob swap, `apktool b` segfaults here)
 
-`com.syu.air` has 266 layouts; `apktool b` dies in aapt2 (exit 139). So don't recompile — swap the
+`com.syu.air` has 266 layouts; `apktool b` dies in aapt2 (exit 139). So don't recompile. Swap the
 **compiled** binary XML at the zip level (binary XML references resources by absolute id, so it renders
 correctly under any filename):
 
@@ -29,5 +29,5 @@ Result: outline HOME/BACK, flat blue volume slider. The slider's blue→cyan gra
 (`d_car_vol_bar_7870` ≈ `#7176FA → #6CDDFA`) is the source of the project's accent color.
 
 > The orange volume **popup** (steering‑wheel or the status‑bar volume button) is a third app,
-> `com.syu.ms`. Rather than recolor it, we **disabled it** as redundant with this slider —
+> `com.syu.ms`. Rather than recolor it, we **disabled it** as redundant with this slider,
 > see [11-volume-osd.md](11-volume-osd.md).

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Fetch the PUBLIC AOSP signing keys this unit trusts. They are NOT committed to this repo
-# (they only *look* like secrets — they're the well-known public test/platform keys).
+# (they only *look* like secrets; they're the well-known public test/platform keys).
 #   - platform.*  signs SYU/system apps (keeps their system uid)            SHA-256 c8a2e9bc…
 #   - testkey.*   whole-file-signs the boot-only root OTA (the unit trusts it) serial 936EACBE07F201DF
 set -e
