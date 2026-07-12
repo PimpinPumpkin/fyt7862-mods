@@ -19,13 +19,22 @@ account/name fields). Run through this after a fresh clone.
 - [ ] **Arrange the home icons** how you want them. The restored layout only brings over apps that are
       actually installed on this unit, so expect gaps.
 - [ ] **Set the quiet BT incoming-call chime.** The stock tone is loud over music. This is NOT part of the
-      BT reskin APK - it is a separate file the BT app plays from `/sdcard/.btring/ring.mp3`
-      (`Page_PopBtRing`, `STREAM_RING`; see [06-app-reskins.md](06-app-reskins.md)). Apply it:
+      BT reskin APK - it is a separate file at `/sdcard/.btring/ring.mp3`. It takes TWO things (traced in
+      `com.syu.bt`): the file at that fixed path, AND a non-empty `name_ring` pref in the app's
+      `bt_data.xml` (empty `name_ring` = stock ring; the BT ring picker sets both when you pick a tone, and
+      a BT-reset clears `name_ring` back to `""`). To apply without the picker:
       ```
+      adb shell 'mkdir -p /sdcard/.btring'
       adb push artifacts/bt_incoming_chime.mp3 /sdcard/.btring/ring.mp3
+      # then, BT app stopped so it doesn't overwrite, add name_ring to bt_data.xml (owner stays 1000:1000):
+      adb shell 'su -c "am force-stop com.syu.bt;
+        sed -i \"s#</map>#    <string name=\\\"name_ring\\\">ring.mp3</string>\n</map>#\" \
+          /data/data/com.syu.bt/shared_prefs/bt_data.xml;
+        restorecon /data/data/com.syu.bt/shared_prefs/bt_data.xml"'
       ```
-      (create `/sdcard/.btring/` first if missing). Then open the **Bluetooth app -> ring picker** and
-      select it so the app saves `name_ring` to that file. Persists across reboots.
+      Or just use the **Bluetooth app -> ring picker** on the unit (does both). The actual ring playback is
+      a layer below the app (MCU/system reads `ring.mp3`), so confirm on a real incoming call. Persists
+      across reboots.
 
 ## Icons (Lawnchair per-app custom icon)
 
