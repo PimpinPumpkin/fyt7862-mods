@@ -127,3 +127,13 @@ icons keep their old look and only newly-rendered ones update - which is why the
 the right (purple) icon but the auto-applied ones stayed stuck (blue) even after toggling Themed Icons off.
 Always finish with: `su -c "rm /data/data/app.lawnchair/databases/app_icons.db*"` then force-stop + reopen
 Lawnchair.
+
+**Always-purple variant (for a unit you CANNOT put in dark mode): `lawnicons-purple-always.apk`.** The
+normal `lawnicons-purple` pack only shows purple in dark mode because its icon color is night-qualified
+(`primaryForeground` = black in `values/`, `#ffc8bfff` in `values-night/`; `primaryBackground` white vs
+`#312e41`). On a different-brand head unit where you cannot force dark mode (no root / OEM lock), the icons
+come out black. The fix: `lawnicons-purple-always.apk` (in `artifacts/launcher/`) has the **light values set
+equal to the dark values**, so it renders purple in BOTH modes. Same package (`app.lawnchair.lawnicons`) and
+same debug key, so it installs as a clean update over the normal pack, then set Icon Pack = Lawnicons,
+Themed Icons = OFF, and clear the icon cache. Rebuilt from the pack by editing `res/values/colors.xml` (and
+stripping the API-33 `enableOnBackInvokedCallback` manifest attr so apktool links against the A10 framework).
